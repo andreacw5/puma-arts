@@ -1,8 +1,8 @@
 {
-  "name": "portfolio",
+  "name": "puma-arts",
   "version": "1.2.2",
   "private": true,
-  "description": "My personal website",
+  "description": "Website for Puma Arts",
   "author": "Andrea Tombolato <andreacw96@gmail.com> (https://github.com/andreacw5)",
   "scripts": {
     "dev": "nuxt",
@@ -13,7 +13,6 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
-    "@nuxtjs/firebase": "^8.2.2",
     "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",

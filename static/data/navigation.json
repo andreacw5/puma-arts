@@ -4,11 +4,6 @@
       "name": "sections.home",
       "icon": "mdi-home",
       "url": "/"
-    },
-    {
-      "name": "sections.projects",
-      "icon": "mdi-briefcase",
-      "url": "/projects"
     }
   ]
 }

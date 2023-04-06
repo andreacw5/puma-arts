@@ -28,7 +28,7 @@ export default {
       { rel: 'apple-touch-icon', sizes: '144x144', href: 'icons/apple-icon-144x144.png' },
       { rel: 'apple-touch-icon', sizes: '152x152', href: 'icons/apple-icon-152x152.png' },
       { rel: 'apple-touch-icon', sizes: '180x180', href: 'icons/apple-icon-180x180.png' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Comfortaa&Delicious+Handrawn&display=swap' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Comfortaa&display=swap' }
     ]
   },
 
@@ -96,37 +96,12 @@ export default {
     }
   },
 
-  firebase: {
-    config: {
-      apiKey: 'AIzaSyDa5vP7y1XWwAbyoj8EJG_NA0zgTrSX-m0',
-      authDomain: 'pw-9483234.firebaseapp.com',
-      projectId: 'pw-9483234',
-      storageBucket: 'pw-9483234.appspot.com',
-      messagingSenderId: '152708470086',
-      appId: '1:152708470086:web:8ba318bc59111f0f0b0147',
-      measurementId: 'G-DWYWYGE1BG'
-    },
-    services: {
-      firestore: true,
-      storage: true
-    },
-    firestore: {
-      memoryOnly: false, // default
-      chunkName: process.env.NODE_ENV !== 'production' ? 'firebase-auth' : '[id]', // default
-      enablePersistence: true,
-      emulatorPort: 8080,
-      emulatorHost: 'localhost'
-    }
-  },
-
   // Sitemap Configuration
   sitemap: {
     hostname: 'https://andreacw.dev',
     gzip: true,
     routes: [
-      '/',
-      '/projects',
-      '/travels'
+      '/'
     ]
   },
 
