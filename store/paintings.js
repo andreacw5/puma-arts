@@ -1,6 +1,21 @@
 export const state = () => ({
   items: [
     {
+      name: '----',
+      description: '',
+      image: '/arts/24.jpeg'
+    },
+    {
+      name: 'Papaveri',
+      description: '',
+      image: '/arts/25.jpeg'
+    },
+    {
+      name: 'Volti',
+      description: '',
+      image: '/arts/26.jpeg'
+    },
+    {
       name: 'Antico fregio',
       description: 'Copia in grafite su cartoncino di una sezione di un antico fregio, cm 23×11',
       image: '/arts/1.png'
