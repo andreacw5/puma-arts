@@ -2,12 +2,12 @@
   <v-container grid-list-md text-xs-center>
     <v-row wrap class="mt-2">
       <v-col cols="12">
-        <v-app-bar dense elevation="0" style="background-color: transparent">
+        <v-app-bar dense elevation="1" class="header" rounded>
           <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = true"></v-app-bar-nav-icon>
           <v-app-bar-title>
             <nuxt-link to="/">
               <h1 class="personal hidden-sm-and-down">Emanuele Puma</h1>
-              <span class="personal hidden-md-and-up">Emanuele Puma</span>
+              <h2 class="personal-small hidden-md-and-up">Emanuele Puma</h2>
             </nuxt-link>
           </v-app-bar-title>
           <v-spacer />
@@ -16,7 +16,7 @@
               <v-btn
                 v-bind="attrs"
                 icon
-                href="https://www.instagram.com/puma_art_lab/"
+                href="https://www.instagram.com/puma_art_lab"
                 target="_blank"
                 alt-text="Instagram profile"
                 v-on="on"
@@ -37,10 +37,6 @@
         >
           <template #prepend>
             <v-list-item two-line>
-              <v-list-item-avatar tile>
-                <img :src="imageUrl" alt="AT Logo">
-              </v-list-item-avatar>
-
               <v-list-item-content>
                 <v-list-item-title>Emanuele <span class="primary-text">Puma</span></v-list-item-title>
                 <v-list-item-subtitle>Artista, scultore e architetto</v-list-item-subtitle>
@@ -56,19 +52,14 @@
               v-model="group"
               active-class="primary-text text--accent-4"
             >
-              <v-list-item v-for="(link,i) in links" :key="i" :href="localePath(link.url, currentLocale)" nuxt>
+              <v-list-item href="/" nuxt>
                 <v-list-item-icon>
-                  <v-icon>{{ link.icon }}</v-icon>
+                  <v-icon>mdi-home</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>{{ $t(link.name) }}</v-list-item-title>
+                <v-list-item-title>Home</v-list-item-title>
               </v-list-item>
             </v-list-item-group>
           </v-list>
-          <template #append>
-            <div class="pa-2">
-              <v-btn block @click="drawer = false">Logout</v-btn>
-            </div>
-          </template>
         </v-navigation-drawer>
       </v-col>
     </v-row>
@@ -101,3 +92,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.header {
+  background-color: transparentize($color: #1d1d1d, $amount: 0.5) !important;
+  border: 1px solid #414141;
+  box-shadow: none;
+}
+</style>

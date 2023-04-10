@@ -1,7 +1,7 @@
 <template>
-  <v-card class="emt-card card"  @click.stop="detailsDialog = true">
+  <v-card class="atom-card card"  @click.stop="detailsDialog = true">
     <v-img
-      :src="image"
+      :src="imageSrc"
       class="image"
       :aspect-ratio="aspectRatio"
       :gradient="baseGradient"
@@ -43,7 +43,7 @@
           </v-btn>
         </v-card-title>
         <v-img
-          :src="image"
+          :src="imageSrc"
           class="image"
           :aspect-ratio="5 / 3"
         >
@@ -95,6 +95,9 @@ export default {
     }
   },
   computed: {
+    imageSrc () {
+      return require(`~/assets/img${this.image}`)
+    },
     baseGradient () {
       return this.gradient
         ? 'to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)'
@@ -107,13 +110,15 @@ export default {
 <style lang="scss" scoped>
 .card {
   background: #333333;
+  border-radius: 8px !important;
   border: 1px solid #414141;
   box-shadow: none;
 }
+.image {
+  border-radius:7px !important;
+}
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 3px 8px 0 #111212, 0 -3px 8px 0 #111212, 3px 0 8px 0 #111212,
-  -3px 0 8px 0 #111212;
 }
 .card-title {
   background-color: transparentize($color: #1d1d1d, $amount: 0.25);
@@ -133,6 +138,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 8px !important;
   width: 100%;
   height: 100%;
   transition: 0.3s ease all;
@@ -150,7 +156,7 @@ export default {
     .card-title {
       position: static;
       width: auto;
-      border-radius: 4px !important;
+      border-radius: 8px !important;
       padding: 10px;
       font-size: 2rem;
     }

@@ -1,8 +1,6 @@
 <template>
-  <!-- Loading -->
-  <loading-component v-if="loading" />
   <!-- Page content -->
-  <div v-else>
+  <div>
     <v-container grid-list-sm text-xs-center class="mt-2">
       <v-row wrap>
         <v-col
