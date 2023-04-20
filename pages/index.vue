@@ -20,7 +20,7 @@
             <template #card-content>
               <div class="team-card-content d-flex align-center fill-height">
                   <span class="text-center flex-grow-1 text--primary">{{
-                      paint.description
+                      paint.description || paint.name
                     }}</span>
               </div>
             </template>
