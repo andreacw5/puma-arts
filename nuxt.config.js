@@ -84,7 +84,7 @@ export default {
 
   // Sitemap Configuration
   sitemap: {
-    hostname: 'https://pumaarts.eu',
+    hostname: 'https://studioartepuma.it/',
     gzip: true,
     routes: [
       '/'
