@@ -8,7 +8,7 @@
       </p>
     <![endif]-->
 
-    <Header @toggleDarkMode="toggleDarkMode" />
+    <Header />
     <v-main>
       <nuxt />
     </v-main>
@@ -24,19 +24,6 @@ export default {
   components: { Footer, Header },
   head: {
     titleTemplate: '%s'
-  },
-  methods: {
-    toggleDarkMode () {
-      if (
-        this.$colorMode.preference === 'dark' ||
-        (this.$colorMode.preference === 'system' &&
-          this.$colorMode.value === 'dark')
-      ) {
-        this.$colorMode.preference = 'light'
-      } else {
-        this.$colorMode.preference = 'dark'
-      }
-    }
   }
 }
 </script>
