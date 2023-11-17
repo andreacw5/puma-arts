@@ -13,15 +13,6 @@
           'title-centered': titleCentered,
         }"
       >
-        <div
-          :class="{
-            'card-title': true,
-            'text-no-wrap': titleEllipsis,
-            'text-truncate': titleEllipsis,
-          }"
-        >
-          {{ title }}
-        </div>
         <div class="card-content">
           <slot name="card-content"></slot>
         </div>
@@ -29,27 +20,56 @@
     </v-img>
     <v-dialog
       v-model="detailsDialog"
-      max-width="650"
+      fullscreen
+      transition="dialog-bottom-transition"
+      class="details-dialog"
+      scrollable
     >
-      <v-card>
-        <v-card-title>
-          {{ title }}
-          <v-spacer />
-          <v-btn
-            outlined
-            @click="detailsDialog = false"
-          >
-            Chiudi
-          </v-btn>
-        </v-card-title>
-        <v-img
-          :src="imageSrc"
-          class="image"
-          :aspect-ratio="5 / 3"
-        >
-        </v-img>
-        <v-card-text v-if="details">
-          <p class="mt-2">{{ details }}</p>
+      <v-card class="details-dialog">
+        <v-card-text>
+          <v-container class="details">
+            <v-row dense>
+              <v-col cols="12">
+                <v-list
+                  style="background: transparent !important;"
+                  class="card-header"
+                >
+                  <v-list-item>
+                    <v-list-item-content class="text-left">
+                      <v-list-item-title>
+                        <h1>{{ title }}</h1>
+                      </v-list-item-title>
+                    </v-list-item-content>
+                    <v-list-item-action>
+                      <v-btn
+                        class="round-border button-hover"
+                        outlined
+                        @click="detailsDialog = false"
+                      >
+                        Chiudi
+                      </v-btn>
+                    </v-list-item-action>
+                  </v-list-item>
+                </v-list>
+              </v-col>
+              <v-col cols="12">
+                <v-img
+                  :src="imageSrc"
+                  class="image details-image-border"
+                  :aspect-ratio="5 / 3"
+                >
+                </v-img>
+              </v-col>
+            </v-row>
+
+            <div class="my-4 text-subtitle-1">
+              Statua - 2019
+            </div>
+
+            <div v-if="details">
+              {{ details }}
+            </div>
+          </v-container>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -131,6 +151,17 @@ export default {
   color: #f2f2f2;
   font-weight: 600;
   font-size: 1.06rem;
+}
+.details {
+  background: #282829 !important;
+}
+.details-image-border {
+  border-bottom: solid 2px var(--color-primary) !important;
+  border-radius: 14px !important;
+}
+.details-dialog {
+  background: rgba(40,40,40, 0.9) !important;
+  border-radius: 14px !important;
 }
 .card-content {
   background-color: transparentize($color: #000, $amount: 0.2);

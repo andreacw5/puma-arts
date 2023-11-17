@@ -12,7 +12,7 @@ export default {
       lang: 'it'
     },
     link: [
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Comfortaa&display=swap' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Work+Sans&display=swap' }
     ]
   },
 
