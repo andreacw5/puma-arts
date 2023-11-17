@@ -9,9 +9,9 @@
     <![endif]-->
 
     <Header />
-    <v-main>
+    <v-content class="mt-4">
       <nuxt />
-    </v-main>
+    </v-content>
     <Footer />
   </v-app>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <!-- Page content -->
   <div>
-    <v-container grid-list-sm text-xs-center class="mt-2">
+    <v-container>
       <v-row wrap>
         <v-col
           v-for="(paint, i) in paintings"
@@ -14,14 +14,14 @@
           <common-card
             :title="paint.name"
             :image="paint.image"
-            :details="paint.description"
+            :details="paint.name"
             :aspect-ratio="5 / 3"
           >
             <template #card-content>
               <div class="team-card-content d-flex align-center fill-height">
-                  <span class="text-center flex-grow-1 text--primary">{{
-                      paint.description || paint.name
-                    }}</span>
+                  <span class="text-center flex-grow-1 text--primary">
+                    {{paint.name }}
+                  </span>
               </div>
             </template>
           </common-card>

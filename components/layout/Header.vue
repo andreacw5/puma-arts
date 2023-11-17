@@ -1,33 +1,27 @@
 <template>
   <v-container grid-list-md text-xs-center>
-    <v-row wrap class="mt-2">
+    <v-row wrap>
       <v-col cols="12">
-        <v-app-bar dense elevation="1" class="header" rounded>
-          <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = true"></v-app-bar-nav-icon>
-          <v-app-bar-title>
-            <nuxt-link to="/">
-              <h1 class="personal hidden-sm-and-down">Emanuele Puma</h1>
-              <h2 class="personal-small hidden-md-and-up">Emanuele Puma</h2>
-            </nuxt-link>
-          </v-app-bar-title>
-          <v-spacer />
-          <v-tooltip bottom>
-            <template #activator="{ on, attrs }">
-              <v-btn
-                v-bind="attrs"
-                icon
-                href="https://www.instagram.com/puma_art_lab"
-                target="_blank"
-                alt-text="Instagram profile"
-                v-on="on"
-              >
-                <v-icon size="27" class="white-text">
-                  mdi-instagram
-                </v-icon>
-              </v-btn>
-            </template>
-            <span>{{ $t('socials.prefix', { name: 'Instagram' }) }}</span>
-          </v-tooltip>
+        <v-app-bar
+          app
+          dark
+          elevate-on-scroll
+          prominent
+          shrink-on-scroll
+          class="header"
+        >
+          <v-app-bar-nav-icon @click="drawer = true" />
+          <v-toolbar-title class="personal">Emanuele Puma</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn text to="/" nuxt class="hidden-sm-and-down white-text mt-1 mr-1" active-class="header-active">
+            Galleria
+          </v-btn>
+          <v-btn text to="/contacts" nuxt class="hidden-sm-and-down white-text mt-1" active-class="header-active">
+            Contatti
+          </v-btn>
+          <v-btn text class="hidden-sm-and-down white-text mt-1">
+            <v-icon>mdi-instagram</v-icon>
+          </v-btn>
         </v-app-bar>
         <v-navigation-drawer
           v-model="drawer"
@@ -56,7 +50,13 @@
                 <v-list-item-icon>
                   <v-icon>mdi-home</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>Home</v-list-item-title>
+                <v-list-item-title>Galleria</v-list-item-title>
+              </v-list-item>
+              <v-list-item href="/contacts" nuxt>
+                <v-list-item-icon>
+                  <v-icon>mdi-home</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>Contatti</v-list-item-title>
               </v-list-item>
             </v-list-item-group>
           </v-list>
@@ -85,8 +85,8 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  background-color: transparentize($color: #1d1d1d, $amount: 0.5) !important;
-  border: 1px solid #414141;
+  background-color: transparentize($color: #3b3b3b, $amount: 0.5) !important;
+  border-bottom: 1px solid #222222;
   box-shadow: none;
 }
 </style>
