@@ -10,18 +10,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@main
 
       - name: Build and push the Docker image
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ secrets.DOCKER_REPO }}
-          registry: registry.gitlab.com
-          tags: ${{ steps.package-version.outputs.current-version}}
+          context: .
+          file: Dockerfile
           push: true
+          tags: registry.gitlab.com/${{ secrets.DOCKER_REPO }}:${{ steps.package-version.outputs.current-version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

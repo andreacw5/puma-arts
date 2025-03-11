@@ -1,75 +1,72 @@
+<script setup lang="ts">
+import GalleryCard from "~/components/gallery/GalleryCard.vue";
+import { useCollectionsStore } from '~/stores/collectionsStore';
+import GetInTouch from "~/components/common/GetInTouch.vue";
+import PageTitle from "~/components/layout/PageTitle.vue";
+
+const collectionsStore = useCollectionsStore();
+
+onMounted(async () => {
+  await collectionsStore.getAll()
+})
+
+const collections = collectionsStore.collections
+
+useSeoMeta({
+  title: 'Studio Arte Puma',
+  ogTitle: 'Studio Arte Puma',
+  description: 'Scopri le mie opere: dipinti, sculture e creazioni uniche. Ogni opera racconta una storia, esplora il mio mondo artistico e lasciati ispirare.',
+  ogDescription: 'Scopri le mie opere: dipinti, sculture e creazioni uniche. Ogni opera racconta una storia, esplora il mio mondo artistico e lasciati ispirare.',
+  ogImage: 'https://example.com/image.png',
+  twitterCard: 'summary_large_image',
+})
+</script>
+
 <template>
-  <!-- Page content -->
-  <div>
-    <v-container>
-      <v-row wrap>
+  <div class="mt-6">
+    <!-- Header section -->
+    <v-card image="/arts/25.webp" class="pa-5 image-container">
+      <template #image>
+        <v-img gradient="to bottom, rgba(18, 18, 18, .5), rgba(18, 18, 18, .8)" />
+      </template>
+
+      <v-container class="pa-4 pa-md-12 my-4" fluid>
+      <v-responsive class="mb-6">
+        <p class="font-weight-bold text-sm-h2 text-md-h2 text-lg-h1 text-xl-h1 text-h2 mt-2 text-center borel">
+          Emanuele Puma
+        </p>
+
+        <p class="mt-4 text-body-1 text-medium-emphasis text-center borel">
+          Pittura | Scultura | Arte astratta
+        </p>
+      </v-responsive>
+    </v-container>
+    <div class="v-bg position-absolute top-0 right-0 left-0 bottom-0">
+      <div aria-hidden="true" class="overflow-hidden opacity-20 w-100 h-100" />
+    </div>
+    </v-card>
+
+    <page-title
+        title="Scopri le mie opere"
+        subtitle="Esplora le mie creazioni in un unico spazio: dai dipinti alle sculture, ogni opera, una storia."
+    />
+
+    <!-- Creations section -->
+    <v-container class="pa-md-12 pa-6 bg-surface-a0" fluid>
+      <v-row>
         <v-col
-          v-for="(paint, i) in paintings"
-          :key="i"
-          cols="12"
-          lg="4"
-          md="6"
-          sm="6"
+            v-for="(item, i) in collections"
+            :key="i"
+            cols="12"
+            md="4"
         >
-          <common-card
-            :title="paint.name"
-            :image="paint.image"
-            :details="paint.name"
-            :aspect-ratio="5 / 3"
-          >
-            <template #card-content>
-              <div class="team-card-content d-flex align-center fill-height">
-                  <span class="text-center flex-grow-1 text--primary">
-                    {{paint.name }}
-                  </span>
-              </div>
-            </template>
-          </common-card>
+          <gallery-card :item="item" />
         </v-col>
       </v-row>
     </v-container>
+
+    <!-- Get in touch section -->
+    <get-in-touch />
+
   </div>
 </template>
-
-<script>
-import LoadingComponent from '@/components/Loading'
-import { createSEOMeta } from '~/utils/seo'
-export default {
-  components: { LoadingComponent },
-  data: () => ({
-    loading: false,
-    paintings: []
-  }),
-  head () {
-    return {
-      title: 'Home - Emanuele Puma',
-      meta: [
-        ...createSEOMeta({
-          title: 'Home',
-          description: 'Andrea Tombolato, Web Developer con base a Milano e questo è il mio sito personale!',
-          url: this.$route.path,
-          image: 'https://firebasestorage.googleapis.com/v0/b/pw-9483234.appspot.com/o/IMG_1104.jpg?alt=media&token=d226d956-bc7f-40b7-aed5-4c5356227449'
-        })
-      ]
-    }
-  },
-  computed: {
-    currentLocale () {
-      return this.$i18n.locale
-    }
-  },
-  created () {
-    this.paintings = this.$store.getters['paintings/getItems']
-  }
-}
-</script>
-
-<style scoped>
-.large-title {
-  font-size: 3rem;
-}
-.services {
-  margin-right: 10px;
-  margin-left: 10px;
-}
-</style>
