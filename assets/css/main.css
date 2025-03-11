@@ -1,0 +1,129 @@
+:root {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Work Sans", sans-serif;
+
+  /** Dark theme primary colors */
+  --color-primary-a0: #ff8c00;
+  --color-primary-a10: #ff9931;
+  --color-primary-a20: #ffa64e;
+  --color-primary-a30: #ffb368;
+  --color-primary-a40: #ffbf81;
+  --color-primary-a50: #ffcc9a;
+
+  /** Dark theme surface colors */
+  --color-surface-a0: #121212;
+  --color-surface-a10: #282828;
+  --color-surface-a20: #3f3f3f;
+  --color-surface-a30: #575757;
+  --color-surface-a40: #717171;
+  --color-surface-a50: #8b8b8b;
+
+  /** Dark theme mixed surface colors */
+  --color-surface-mixed-a0: #271d15;
+  --color-surface-mixed-a10: #3c322a;
+  --color-surface-mixed-a20: #514841;
+  --color-surface-mixed-a30: #686059;
+  --color-surface-mixed-a40: #807872;
+  --color-surface-mixed-a50: #98918d;
+
+}
+
+c {
+  color: rgba(18, 18, 18, 1)
+}
+
+.bg-surface-a0 {
+  background-color: var(--color-surface-a0) !important;
+}
+
+.bg-surface-a10 {
+  background-color: var(--color-surface-a10) !important;
+}
+
+.bg-surface-a20 {
+  background-color: var(--color-surface-a20) !important;
+}
+
+.text-primary {
+  color: var(--color-primary-a0) !important;
+}
+
+.text-primary-a10 {
+  color: var(--color-primary-a10) !important;
+}
+
+.text-primary-a30 {
+  color: var(--color-primary-a30) !important;
+}
+
+.text-primary-a50 {
+  color: var(--color-primary-a50) !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.footer {
+  color: #ffffff;
+  background-color: var(--color-surface-a10) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.header {
+  color: #ffffff;
+  background-color: var(--color-surface-a10) !important;
+  border-bottom: solid 1px var(--color-surface-a30) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card {
+  color: #ffffff;
+  background-color: var(--color-surface-a10) !important;
+  border-radius: 15px !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.image-card {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border: 2px solid transparent;
+}
+
+.image-card:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border-color: var(--color-primary-a0) !important;
+}
+
+/* Adding hover effect for inactive icons */
+.icon-inactive {
+  scale: 1;
+  transition: scale 0.3s ease-in-out;
+}
+
+.icon-inactive:hover {
+  scale: 1.2;
+}
+
+.borel {
+  font-family: "Work Sans", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.delius-regular {
+  font-family: "Work Sans", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.delius-bold {
+    font-family: "Work Sans", cursive;
+    font-weight: 700;
+    font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
