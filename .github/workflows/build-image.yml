@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: registry.gitlab.com
-          repository: atomweb/puma-arts
+          repository: heyatomdev/puma-arts
           tags: ${{ steps.get_version.outputs.VERSION }}
           always_pull: true
 
@@ -37,7 +37,7 @@ jobs:
       - name: Scan the Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'registry.gitlab.com/atomweb/puma-arts:${{ steps.get_version.outputs.VERSION }}'
+          image-ref: 'registry.gitlab.com/heyatomdev/puma-arts:${{ steps.get_version.outputs.VERSION }}'
           format: 'table'
           exit-code: '0'
           ignore-unfixed: true
