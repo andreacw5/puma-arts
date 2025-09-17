@@ -32,7 +32,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^8.5.6",
     "@vite-pwa/nuxt": "^0.10.8",
-    "nuxt": "3.16.0",
+    "nuxt": "3.19.0",
     "postcss": "^8.5.6",
     "sass": "1.69.5",
     "sass-loader": "12.2.0",
