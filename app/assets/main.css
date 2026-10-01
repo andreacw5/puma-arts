@@ -1,15 +1,25 @@
-/* Neutral base until DESIGN.md fixes palette and type. Tokens live here only. */
+/* Manifesto d'affissione: poster paper, flat printing ink, one full tint per stage. */
 :root {
-  --bg: #f4f2ee;
-  --ink: #1b1a18;
-  --ink-2: #55524c;
+  --paper: #f4f3ef;
+  --paper-2: #e9e7e0;
+  --ink: #141414;
+  --ink-2: #4a4843;
+  /* Stage inks: never two on screen at once. */
+  --red: #e2401c;
+  --blue: #1f3fbf;
+  --yellow: #f2b705;
+  /* Text printed on each ink. */
+  --on-red: #fff6ef;
+  --on-blue: #f3f5ff;
+  --on-yellow: #141414;
+  --on-black: #f4f3ef;
 
-  --sans: system-ui, sans-serif;
+  --sans: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --gutter: clamp(1rem, 4vw, 3rem);
-  --max: 1240px;
-  --section: clamp(5rem, 11vw, 8.5rem);
+  --max: 1440px;
+  --section: clamp(4rem, 10vw, 8rem);
 
   color-scheme: light;
 }
@@ -21,18 +31,27 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  scrollbar-color: var(--ink) var(--paper);
 }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
 }
 
+::selection { background: var(--ink); color: var(--paper); }
+
 img { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+
+:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
 
 .page-enter-active,
 .page-leave-active { transition: opacity 0.35s var(--ease-out); }
