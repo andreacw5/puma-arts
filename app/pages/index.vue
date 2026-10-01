@@ -18,7 +18,8 @@ useMotion(root, (mm, el) => {
     // The cover is pasted on from the top, then the name rises out of the band.
     gsap.timeline({ defaults: { ease: 'expo.out' } })
       .to(el.querySelector('.bill-art'), { clipPath: 'inset(0% 0 0% 0)', duration: 1.4 })
-      .to(el.querySelectorAll('.bill-name .ln > span'), { yPercent: 0, duration: 1.1, stagger: 0.08 }, '-=0.9')
+      // GSAP reads the CSS translateY(110%) as y in px, so it is y that goes back to 0.
+      .to(el.querySelectorAll('.bill-name .ln > span'), { y: 0, duration: 1.1, stagger: 0.08 }, '-=0.9')
 
     // Each stage is a wall: vertical scroll walks along it, then the next poster is pasted over it.
     const walk = el.querySelector<HTMLElement>('#percorso')!
@@ -129,8 +130,9 @@ useMotion(root, (mm, el) => {
 /* ---------- First viewport: the bill ---------- */
 .bill {
   display: grid;
-  grid-template-rows: minmax(0, 72svh) auto;
-  min-height: 100svh;
+  /* The band takes what it needs; the cover fills the rest of exactly one screen. */
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100svh;
   background: var(--red);
   color: var(--on-red);
   /* Stays put underneath: the first stage is pasted over it. */
@@ -179,9 +181,11 @@ useMotion(root, (mm, el) => {
 .bill-line { margin: 0.4rem 0 0; font-weight: 600; font-size: 1.05rem; }
 .bill-credit { margin: 0; font-size: 0.8rem; opacity: 0.85; }
 
-@media (min-width: 900px) {
+/* Same breakpoint as the walls: a phone on its side gets the cover beside the band. */
+@media (min-width: 900px), (orientation: landscape) and (max-height: 520px) {
   .bill {
-    grid-template-rows: none;
+    /* A fixed row: an auto row grows to the photo's natural height and pushes the name off screen. */
+    grid-template-rows: minmax(0, 1fr);
     grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
     height: 100svh;
   }
