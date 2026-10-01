@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "label": "Sezioni",
+    "works": "Opere",
+    "about": "Chi sono",
+    "contact": "Contatti",
+    "language": "Lingua"
+  },
+  "count": "{n} opera | {n} opere",
+  "stages": {
+    "figurativo": {
+      "title": "Pittura",
+      "line": "Paesaggi, ritratti, velieri."
+    },
+    "astratto": {
+      "title": "Astratto",
+      "line": "Tempera e acrilico, senza più un soggetto."
+    },
+    "disegno": {
+      "title": "Disegno",
+      "line": "Dalle copie dei maestri, a grafite, china e pastello."
+    },
+    "scultura": {
+      "title": "Scultura",
+      "line": "La terracotta."
+    }
+  },
+  "kind": {
+    "pittura": "Dipinto",
+    "disegno": "Disegno",
+    "scultura": "Scultura"
+  },
+  "home": {
+    "seo": {
+      "title": "Emanuele Puma: pittura, scultura e disegno",
+      "description": "Dipinti, sculture in terracotta e disegni di Emanuele Puma: paesaggi, ritratti, velieri, l'astratto e le copie dei maestri, opera per opera."
+    },
+    "coverAlt": "{title}, dipinto di {artist}",
+    "line": "Pittura, scultura, disegno · {n} opere",
+    "credit": "In copertina: {title}",
+    "back": "Indietro",
+    "forward": "Avanti",
+    "after": "da {author}",
+    "ogAlt": "Il nome {artist} accanto al dipinto {title}"
+  },
+  "about": {
+    "seo": {
+      "title": "Chi sono",
+      "description": "Emanuele Puma, pittore e scultore: un artista da sempre, dalle prime copie dei maestri all'astratto."
+    },
+    "portraitAlt": "{artist} di profilo, di notte, davanti a fontane illuminate",
+    "title": "Un artista da sempre",
+    "line": "{artist}, pittore e scultore",
+    "job": "Pittore e scultore",
+    "quote": "Ogni opera che creo è una parte di me.",
+    "story": [
+      "Sin da bambino, fin dai primi progetti scolastici, sono stato affascinato dal mondo dell'arte. Pittura, scultura e ogni forma di espressione visiva sono diventati il mio linguaggio, una passione che è cresciuta con me e che non mi ha mai abbandonato.",
+      "Ogni opera rappresenta i miei pensieri, le mie emozioni e la mia visione del mondo. Attraverso ogni pennellata e ogni dettaglio scultoreo cerco di trasmettere qualcosa di unico e profondo, che possa toccare l'anima di chi osserva.",
+      "Le mie opere sono lo specchio del mio vissuto, una finestra aperta sulla mia interiorità e sul modo in cui percepisco il mondo. Ogni creazione, sia essa un dipinto o una scultura, è un'estensione di me stesso, un pezzo della mia anima che prende forma e colore.",
+      "Adoro sperimentare tecniche e stili diversi, cercando sempre di evolvermi e di esprimere in modo autentico le mie emozioni."
+    ],
+    "path": "Il percorso",
+    "ogAlt": "{portrait}, accanto alla scritta «{title}»"
+  },
+  "work": {
+    "notFound": "Opera non trovata",
+    "back": "Torna a {stage}",
+    "copyOf": "Copia da {author}",
+    "n": "Opera {n} di {total}",
+    "scale": "Dimensioni in scala: {w} per {h} centimetri, accanto a un foglio A4",
+    "nav": "Opere",
+    "prev": "Precedente",
+    "next": "Successiva",
+    "untitled": "Senza titolo n. {n}",
+    "seoTitle": "{title}, {kind} di {artist}",
+    "from": "Dalla sezione {stage} di Studio Arte Puma. {line}",
+    "ogAlt": "{alt}, di {artist}"
+  },
+  "close": {
+    "say": "Scrivimi."
+  }
+}
