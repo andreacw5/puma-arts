@@ -1,31 +1,24 @@
-# Puma Arts Website
+# Studio Arte Puma
 
-## Overview
-This project is built with [Nuxt 3](https://nuxt.com/). It provides server-side rendering (SSR), static site generation (SSG), and client-side functionality in one framework.
+Sito di Emanuele Puma, pittore e scultore: [studioartepuma.it](https://studioartepuma.it).
 
-## Requirements
-- Node.js (v16+)
-- pnpm
+Nuxt 4, CSS puro, GSAP. Nessun backend: le pagine sono prerenderizzate in build e servite dal server Nitro.
 
-## Getting Started
-1. Clone the repository.
-2. Navigate to the project directory and install dependencies:
-   ```bash
-   pnpm install
-    ```
-3. Start the development server:
-   ```bash
-   pnpm run dev
-    ```
+## Sviluppo
 
-## Building for Production
-Run the following command to generate production builds:
 ```bash
-pnpm run build
-pnpm run start
+pnpm install
+pnpm dev          # http://localhost:3000
+pnpm build        # stesso check della CI
+node .output/server/index.mjs
 ```
 
-This command compiles your files and starts the production server.
-   
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Richiede Node 24 e pnpm 10.
+
+## Deploy
+
+Un tag git fa partire `.github/workflows/build-image.yml`: build dell'immagine Docker e push su `registry.gitlab.com/heyatomdev/puma-arts:<tag>`.
+
+## Licenza
+
+MIT, vedi [LICENSE](LICENSE).

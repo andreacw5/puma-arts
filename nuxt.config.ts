@@ -1,71 +1,48 @@
-// PWA Config
-const title = "Studio Arte Puma";
-const shortTitle = "Studio Arte Puma";
-const description = "Scopri le mie opere: dipinti, sculture e creazioni uniche. Ogni opera racconta una storia, esplora il mio mondo artistico e lasciati ispirare.";
-const image = "https://file-harbor.com/api/v1/files/59eede5fb0b097a63e0eb276add71e83";
-const url = "https://studioartepuma.it";
-const themeColor = "#212122";
+import { artworks } from './app/data/artworks'
 
 export default defineNuxtConfig({
-  alias: {
-    assets: '/<rootDir>/assets',
-    composables: '/<rootDir>/composables'
+  compatibilityDate: '2026-09-01',
+  devtools: { enabled: false },
+  modules: ['@nuxtjs/i18n', '@nuxtjs/robots', '@nuxtjs/sitemap'],
+  css: ['@fontsource-variable/archivo/wdth.css', '~/assets/main.css'],
+  site: { url: 'https://studioartepuma.it' },
+  // Sitemaps are written at build time from the prerendered pages, not served by a runtime handler.
+  sitemap: { zeroRuntime: true },
+  i18n: {
+    locales: [
+      { code: 'it', language: 'it-IT', name: 'Italiano', file: 'it.json' },
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+    ],
+    defaultLocale: 'it',
+    // Italian stays on /, English lives under /en.
+    strategy: 'prefix_except_default',
+    baseUrl: 'https://studioartepuma.it',
+    // First visit to / follows the browser; the choice sticks in a cookie. Unsupported or missing language (crawlers) stays Italian.
+    detectBrowserLanguage: { useCookie: true, cookieKey: 'lang', redirectOn: 'root', fallbackLocale: 'it' },
   },
-
+  // An artwork grows from the wall into its own page.
+  experimental: { viewTransition: true },
+  runtimeConfig: {
+    public: { siteUrl: 'https://studioartepuma.it' },
+  },
+  // Content is static: pages are rendered at build time, starting from /en and /chi-sono and following links.
+  // Sitemap (one per language + index) and robots.txt are generated from the prerendered pages.
+  // / is the one page rendered per request: the server reads the browser language and redirects to /en
+  // before any HTML is sent. Prerendered, the redirect would happen during hydration.
+  routeRules: { '/': { prerender: false } },
+  // Italian artwork pages are linked only from /, so they are listed here; /en links its own.
+  // Static assets ship with .br/.gz next to them, so the Node server never serves them uncompressed.
+  nitro: { compressPublicAssets: true, prerender: { crawlLinks: true, routes: ['/en', '/chi-sono', '/robots.txt', ...artworks.map(a => `/opere/${a.slug}`)] } },
   app: {
     head: {
-      titleTemplate: '%s - Studio Arte Puma',
-      title: 'Studio Arte Puma',
-      htmlAttrs: {
-        lang: 'it'
-      },
-      meta: [
-        {key: "description", name: "description", content: description,},
-        {property: "og:site_name", content: title},
-        {key: "og:type", property: "og:type", content: "website"},
-        {key: "og:url", property: "og:url", content: url},
-        {key: "og:image:secure_url", property: "og:image:secure_url", content: image},
-        {key: "og:title", property: "og:title", content: title},
-        {key: "og:description", property: "og:description", content: description},
-        {key: "og:image", property: "og:image", content: image},
-        //Twitter
-        {name: "twitter:card", content: "summary_large_image"},
-        {key: "twitter:url", name: "twitter:url", content: url},
-        {key: "twitter:title", name: "twitter:title", content: title},
-        {key: "twitter:description", name: "twitter:description", content: description},
-        {key: "twitter:image", name: "twitter:image", content: image},
+      titleTemplate: '%s · Studio Arte Puma',
+      // Sigla EP: favicon.svg is the source, .ico (16/32/48) and the touch icon are rasterised from it.
+      // sizes 32x32, not any/48x48: otherwise Chrome picks the .ico over the SVG.
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
-    }
+    },
   },
-
-  css: ['vuetify/styles', '~/assets/css/main.css'],
-
-  devtools: { enabled: true },
-
-  modules: ['@pinia/nuxt', '@nuxtjs/google-fonts'],
-
-  plugins: ['~/plugins/vuetify.ts'],
-
-  runtimeConfig: {
-    SERVICE_KEY: process.env.SERVICE_KEY,
-    public: {
-      FILE_HARBOR_URL: 'https://file-harbor.com',
-    }
-  },
-
-  googleFonts: {
-    display: 'swap',
-    families: {
-      "Work Sans": true
-    }
-  },
-
-  build: { transpile: ["vuetify"] },
-
-  typescript: {
-    typeCheck: true
-  },
-
-  // Nuxt compatibility date
-  compatibilityDate: '2024-12-03',
 })
