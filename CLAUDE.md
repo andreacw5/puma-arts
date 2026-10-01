@@ -2,7 +2,7 @@
 
 Sito di Studio Arte Puma (studioartepuma.it). **Nuxt 4 + Vue 3 + CSS puro + GSAP**, prerender + Nitro Node, pnpm. Stessa impostazione tecnica di `../heyatom-portfolio`: in caso di dubbio, fare come lì.
 
-Niente Vuetify, niente Pinia, niente DB. I contenuti saranno file TS in `app/data/`.
+Niente Vuetify, niente Pinia, niente DB. I contenuti sono file TS in `app/data/`.
 
 ## Struttura
 
@@ -10,10 +10,13 @@ Niente Vuetify, niente Pinia, niente DB. I contenuti saranno file TS in `app/dat
 app/
   app.vue            # head globale: canonical, og default, classe `js` per il motion
   assets/main.css    # token e stili base. Palette e font provvisori finché manca DESIGN.md
+  data/artworks.ts   # opere: fonte unica, ordine = più recenti prima
+  data/site.ts       # nome, contatti, ritratto
   pages/
   utils/img.ts       # img/srcset per FileHarbor (?width=N)
   utils/motion.ts    # useMotion, revealLines, magnetic (copiato dal portfolio)
 public/arts/         # immagini opere, temporanee: vanno su FileHarbor
+scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts e li sostituisce
 ```
 
 ## Regole
@@ -22,6 +25,8 @@ public/arts/         # immagini opere, temporanee: vanno su FileHarbor
 - **Motion**: sempre via `useMotion(root, (mm, el) => …)`, animazioni dentro `mm.add(MOTION_OK, …)`.
 - **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`.
 - **Prerender**: Nitro parte da `/` e segue i link. Una pagina non linkata da nessuna parte va aggiunta a `nitro.prerender.routes`.
+- **Opere**: titolo assente = "Senza titolo", sempre via `artworkTitle()`. `slug` stabile: è l'URL di `/opere/<slug>`. Non scrivere tecnica o misure dentro `note`.
+- **Immagini**: URL FileHarbor → `img(url, w)` / `srcset(url, widths)`. Nuova immagine: metterla in `public/`, referenziarla da `app/data/`, poi `FILEHARBOR_API_KEY=… pnpm upload-images`.
 - **Lingua**: solo italiano.
 - **Contatti**: solo `mailto:`. Nessun form.
 
