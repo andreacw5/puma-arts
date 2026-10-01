@@ -55,3 +55,21 @@ export function magnetic(el: HTMLElement, strength = 0.3) {
     el.removeEventListener('pointerleave', leave)
   }
 }
+
+/**
+ * Opening of a page poster: the image is pasted on from the top, then the heading rises line by line.
+ * Pair with the `intro-art` / `intro-heading` classes, which main.css hides before first paint.
+ */
+export function pasteIn(art: Element, heading: Element) {
+  gsap.to(art, { clipPath: 'inset(0% 0 0% 0)', duration: 1.4, ease: 'expo.out' })
+  return SplitText.create(heading, {
+    type: 'lines',
+    mask: 'lines',
+    linesClass: 'intro-line',
+    autoSplit: true,
+    onSplit: (self) => {
+      gsap.set(heading, { visibility: 'visible' })
+      return gsap.from(self.lines, { yPercent: 115, duration: 1.1, ease: 'expo.out', stagger: 0.08, delay: 0.5 })
+    },
+  })
+}

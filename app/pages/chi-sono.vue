@@ -1,19 +1,25 @@
 <script setup lang="ts">
 import { path } from '~/data/artworks'
 import { site } from '~/data/site'
+import { MOTION_OK, pasteIn, useMotion } from '~/utils/motion'
 
 useSeoMeta({
   title: 'Chi sono',
   description: 'Emanuele Puma, pittore e scultore: un artista da sempre, dalle prime copie dei maestri all\'astratto.',
   ogImage: img(site.portrait, 1200),
 })
+
+const root = ref<HTMLElement>()
+useMotion(root, (mm, el) => {
+  mm.add(MOTION_OK, () => { pasteIn(el.querySelector('.bill-art')!, el.querySelector('.bill-title')!) })
+})
 </script>
 
 <template>
-  <div>
+  <div ref="root">
     <section class="bill ink-black" aria-labelledby="title">
       <img
-        class="bill-art"
+        class="bill-art intro-art"
         :src="img(site.portrait, 1200)"
         :srcset="srcset(site.portrait, [600, 900, 1200, 1600])"
         sizes="(min-width: 900px) 50vw, 100vw"
@@ -27,7 +33,7 @@ useSeoMeta({
           <NuxtLink to="/">Opere</NuxtLink>
           <a href="#contatti">Contatti</a>
         </nav>
-        <h1 id="title" class="bill-title">Un artista da sempre</h1>
+        <h1 id="title" class="bill-title intro-heading">Un artista da sempre</h1>
         <p class="bill-line">{{ site.artist }}, pittore e scultore</p>
       </div>
     </section>

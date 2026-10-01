@@ -27,6 +27,7 @@ scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts
 - **Stile**: CSS scoped nei componenti + token da `main.css`. Mai colori hardcoded. Inchiostri delle tappe (`.ink-*`) e bordo strappato (`.torn`, `--torn-ink`) sono globali in `main.css`: non ridefinire `--stage-ink` in CSS scoped, vince sulla classe globale.
 - **Un inchiostro per schermo**: mai due tinte piene visibili insieme; dove una lista mostra più tappe, la tinta arriva solo su hover/focus.
 - **Motion**: sempre via `useMotion(root, (mm, el) => …)`, animazioni dentro `mm.add(MOTION_OK, …)`. Senza motion le pareti sono normali scroller orizzontali.
+- **Apertura delle pagine**: `pasteIn(img, heading)` di `utils/motion.ts` + classi `intro-art` / `intro-heading` (nascoste prima del paint in `main.css`). Ogni pagina con un manifesto in apertura la usa, così le aperture non divergono.
 - **CSS scoped + `.js`**: scrivere `:global(.js .x)`, mai `:global(.js) .x`: Vue compila il secondo in `.js` e applica le regole a `<html>`.
 - **Direzione visiva**: "Manifesto d'affissione", contratto in `.impeccable/surfaces/app-pages-index-vue.md`. `PRODUCT.md` per il prodotto; `DESIGN.md` arriva a build finita.
 - **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`.

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { artworks, artworkTitle, artworkCaption, path } from '~/data/artworks'
 import { site } from '~/data/site'
-import { gsap, MOTION_OK, useMotion } from '~/utils/motion'
+import { gsap, MOTION_OK, pasteIn, useMotion } from '~/utils/motion'
 
 useSeoMeta({
   title: 'Pittura, scultura, disegno',
@@ -15,11 +15,7 @@ const pad = (i: number) => String(i).padStart(2, '0')
 const root = ref<HTMLElement>()
 useMotion(root, (mm, el) => {
   mm.add(MOTION_OK, () => {
-    // The cover is pasted on from the top, then the name rises out of the band.
-    gsap.timeline({ defaults: { ease: 'expo.out' } })
-      .to(el.querySelector('.bill-art'), { clipPath: 'inset(0% 0 0% 0)', duration: 1.4 })
-      // GSAP reads the CSS translateY(110%) as y in px, so it is y that goes back to 0.
-      .to(el.querySelectorAll('.bill-name .ln > span'), { y: 0, duration: 1.1, stagger: 0.08 }, '-=0.9')
+    pasteIn(el.querySelector('.bill-art')!, el.querySelector('.bill-name')!)
 
     // Each stage is a wall: vertical scroll walks along it, then the next poster is pasted over it.
     const walk = el.querySelector<HTMLElement>('#percorso')!
@@ -47,10 +43,10 @@ useMotion(root, (mm, el) => {
 </script>
 
 <template>
-  <div ref="root" class="home">
+  <div ref="root">
     <section class="bill" aria-labelledby="name">
       <img
-        class="bill-art"
+        class="bill-art intro-art"
         :src="img(cover.image, 1200)"
         :srcset="srcset(cover.image, [600, 900, 1200, 1800])"
         sizes="(min-width: 900px) 62vw, 100vw"
@@ -65,9 +61,9 @@ useMotion(root, (mm, el) => {
           <NuxtLink to="/chi-sono">Chi sono</NuxtLink>
           <a href="#contatti">Contatti</a>
         </nav>
-        <h1 id="name" class="bill-name">
-          <span class="ln"><span>Emanuele</span></span>
-          <span class="ln"><span>Puma</span></span>
+        <h1 id="name" class="bill-name intro-heading">
+          <span>Emanuele</span>
+          <span>Puma</span>
         </h1>
         <p class="bill-line">Pittura, scultura, disegno · {{ total }} opere</p>
         <p class="bill-credit">In copertina: {{ artworkTitle(cover) }}</p>
@@ -167,12 +163,6 @@ useMotion(root, (mm, el) => {
   /* EMANUELE fills the band width at the condensed cut. */
   font-size: clamp(3.5rem, 21vw, 9rem);
 }
-.ln { display: block; overflow: clip; padding-top: 0.04em; }
-.ln > span { display: block; }
-/* Hidden before first paint only when motion will reveal them. The whole selector is global:
-   in scoped CSS `:global(.js) .x` compiles to plain `.js`. Global, so scoped to .home by hand. */
-:global(.js .home .bill-art) { clip-path: inset(0 0 100% 0); }
-:global(.js .home .bill-name .ln > span) { transform: translateY(110%); }
 
 .bill-line { margin: 0.4rem 0 0; font-weight: 600; font-size: 1.05rem; }
 .bill-credit { margin: 0; font-size: 0.8rem; opacity: 0.85; }

@@ -53,6 +53,10 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 
 :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
 
+/* Page openings (pasteIn in utils/motion.ts): hidden before first paint only when motion will reveal them. */
+.js .intro-art { clip-path: inset(0 0 100% 0); }
+.js .intro-heading { visibility: hidden; }
+
 /* Stage inks: a stage's poster colour and the text printed on it. */
 .ink-black { --stage-ink: var(--ink); --on-stage: var(--on-black); }
 .ink-red { --stage-ink: var(--red); --on-stage: var(--on-red); }
