@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { artworks, artworkTitle, artworkCaption, path } from '~/data/artworks'
+import { artworks, artworkAlt, artworkTitle, artworkCaption, path } from '~/data/artworks'
 import { site } from '~/data/site'
 import { gsap, MOTION_OK, pasteIn, useMotion } from '~/utils/motion'
 
@@ -96,7 +96,7 @@ useMotion(root, (mm, el) => {
                     sizes="(min-width: 900px) 40vw, 80vw"
                     :width="w.px[0]"
                     :height="w.px[1]"
-                    :alt="`${artworkTitle(w)}${w.medium ? `, ${w.medium.toLowerCase()}` : ''}`"
+                    :alt="artworkAlt(w)"
                     :style="{ viewTransitionName: `art-${w.slug}` }"
                     loading="lazy"
                   >

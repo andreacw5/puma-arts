@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { artworkTitle, artworkCaption, pathOrder } from '~/data/artworks'
+import { artworkAlt, artworkTitle, artworkCaption, pathOrder } from '~/data/artworks'
 import { site } from '~/data/site'
 
 const route = useRoute()
@@ -16,7 +16,7 @@ const caption = artworkCaption(w)
 
 useSeoMeta({
   title,
-  description: [caption, w.copyOf && `Copia da ${w.copyOf}`, `di ${site.artist}`].filter(Boolean).join('. '),
+  description: [w.subject && w.subject[0]!.toUpperCase() + w.subject.slice(1), caption, w.copyOf && `Copia da ${w.copyOf}`, `Opera di ${site.artist}`].filter(Boolean).join('. '),
   ogImage: img(w.image, 1200),
 })
 
@@ -48,7 +48,7 @@ onMounted(() => {
         sizes="(min-width: 900px) 66vw, 100vw"
         :width="w.px[0]"
         :height="w.px[1]"
-        :alt="`${title}${w.medium ? `, ${w.medium.toLowerCase()}` : ''}`"
+        :alt="artworkAlt(w)"
         :style="{ viewTransitionName: `art-${w.slug}` }"
       >
     </figure>

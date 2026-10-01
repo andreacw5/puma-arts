@@ -32,7 +32,7 @@ scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts
 - **Direzione visiva**: "Manifesto d'affissione", contratto in `.impeccable/surfaces/app-pages-index-vue.md`. `PRODUCT.md` per il prodotto; `DESIGN.md` arriva a build finita.
 - **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`.
 - **Prerender**: Nitro parte da `/` e segue i link. Una pagina non linkata da nessuna parte va aggiunta a `nitro.prerender.routes`.
-- **Opere**: titolo assente = "Senza titolo", sempre via `artworkTitle()`. `slug` stabile: è l'URL di `/opere/<slug>`. Non scrivere tecnica o misure dentro `note`.
+- **Opere**: titolo assente = "Senza titolo", sempre via `artworkTitle()`. Un'opera senza titolo deve avere `subject` (cosa raffigura): è il suo alt. Alt sempre via `artworkAlt()`. `slug` stabile: è l'URL di `/opere/<slug>`. Non scrivere tecnica o misure dentro `note`.
 - **Immagini**: URL FileHarbor → `img(url, w)` / `srcset(url, widths)`. Nuova immagine: metterla in `public/`, referenziarla da `app/data/`, poi `pnpm upload-images` (key in `.env`), poi cancellare il file locale.
 - **Lingua**: solo italiano.
 - **Contatti**: solo `mailto:`. Nessun form.
