@@ -35,7 +35,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       titleTemplate: '%s · Studio Arte Puma',
-      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+      // Sigla EP: favicon.svg is the source, .ico (16/32/48) and the touch icon are rasterised from it.
+      // sizes 32x32, not any/48x48: otherwise Chrome picks the .ico over the SVG.
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
     },
   },
 })
