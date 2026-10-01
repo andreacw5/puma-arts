@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "puma-arts", "runtimeExecutable": "pnpm", "runtimeArgs": ["--dir", "/Users/atombolato/Documents/Repository/HeyAtom.nosync/puma-arts", "dev", "--port", "3220"], "port": 3220 }
+  ]
+}
