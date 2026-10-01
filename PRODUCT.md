@@ -30,7 +30,7 @@ Un artista vero con un percorso vero: dalla copia dei maestri (Cézanne, Picasso
 
 - Nuxt 4 + CSS puro con token + GSAP, pagine prerenderizzate, deploy Docker. Stessa impostazione di `../heyatom-portfolio`.
 - Opere in `app/data/artworks.ts`: titolo (assente = "Senza titolo"), categoria (pittura, scultura, disegno), astratto sì/no, tecnica, misure in cm, autore dell'originale per le copie, nota dell'artista. Immagini su FileHarbor, ridimensionate on demand.
-- Pagine previste: home, `/opere` con filtro per categoria, `/opere/[slug]`, `/chi-sono`. Contatti nel footer e in chiusura, non in una pagina a sé.
+- Pagine: home (il percorso a pareti è la galleria), `/opere/[slug]`, `/chi-sono`. Contatti in chiusura, non in una pagina a sé. Una pagina indice `/opere` con filtri non serve finché le opere restano poche; ha senso solo se diventano molte.
 - Le foto delle opere sono scatti amatoriali: inquadrature, luce e sfondi variano (tavolo, muro, tela storta). Il design deve reggerle, non presupporre riproduzioni da catalogo.
 - Non decisi: anno delle opere (non disponibile), stato venduta/disponibile (non mostrato, il sito non vende).
 
@@ -52,7 +52,7 @@ Un artista vero con un percorso vero: dalla copia dei maestri (Cézanne, Picasso
 
 1. **Le opere prima di tutto.** L'interfaccia si fa da parte: nessun elemento decorativo compete con un quadro.
 2. **Da telefono, dalla bio di Instagram.** Ogni scelta va giudicata prima su un 375 px aperto da un link.
-3. **Il percorso è il racconto.** Copie, figurativo, astratto, scultura: mostrarli come tappe di una crescita, non nasconderli.
+3. **Il percorso è il racconto, la pittura viene prima.** Pittura, astratto, disegno, scultura: la pittura è il suo lavoro principale e prende il primo impatto dello scroll; le copie dei maestri restano come tappa, non nascoste.
 4. **Onestà sul materiale.** Niente claim, niente cornici finte da galleria: foto vere, dati veri, "Senza titolo" quando non c'è un titolo.
 
 ## Accessibility & Inclusion

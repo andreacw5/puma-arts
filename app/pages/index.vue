@@ -18,6 +18,22 @@ function slide(e: MouseEvent, dir: 1 | -1) {
   const wall = (e.currentTarget as HTMLElement).closest('.stage-in')!.querySelector<HTMLElement>('.wall')!
   wall.scrollBy({ left: dir * wall.clientWidth * 0.8 })
 }
+// Each button switches off at its end of the wall.
+function syncNav(wall: HTMLElement) {
+  const [back, fwd] = wall.closest('.stage-in')!.querySelectorAll<HTMLButtonElement>('.wall-nav button')
+  if (!back || !fwd) return
+  back.disabled = wall.scrollLeft <= 1
+  fwd.disabled = wall.scrollLeft >= wall.scrollWidth - wall.clientWidth - 1
+}
+onMounted(() => {
+  const walls = [...document.querySelectorAll<HTMLElement>('.wall')]
+  const onScroll = (e: Event) => syncNav(e.currentTarget as HTMLElement)
+  for (const w of walls) {
+    syncNav(w)
+    w.addEventListener('scroll', onScroll, { passive: true })
+  }
+  onBeforeUnmount(() => walls.forEach(w => w.removeEventListener('scroll', onScroll)))
+})
 
 const root = ref<HTMLElement>()
 useMotion(root, (mm, el) => {
@@ -92,7 +108,7 @@ useMotion(root, (mm, el) => {
             <p class="stage-line">{{ stage.line }}</p>
             <p class="stage-count">{{ stage.works.length }} {{ stage.works.length === 1 ? 'opera' : 'opere' }}</p>
             <p v-if="stage.works.length > 1" class="wall-nav">
-              <button type="button" @click="slide($event, -1)">Indietro</button>
+              <button type="button" disabled @click="slide($event, -1)">Indietro</button>
               <button type="button" @click="slide($event, 1)">Avanti</button>
             </p>
           </header>
@@ -237,7 +253,8 @@ useMotion(root, (mm, el) => {
   padding: 0.35rem 0.8rem;
   cursor: pointer;
 }
-.wall-nav button:hover { background: var(--on-stage); color: var(--stage-ink); }
+.wall-nav button:hover:not(:disabled) { background: var(--on-stage); color: var(--stage-ink); }
+.wall-nav button:disabled { opacity: 0.4; cursor: default; }
 /* Walking moves the wall already. */
 .is-walk .wall-nav { display: none; }
 

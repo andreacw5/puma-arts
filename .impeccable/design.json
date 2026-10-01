@@ -79,6 +79,21 @@
           "oklch(95% 0.204 33.6)"
         ]
       },
+      "green": {
+        "role": "stage",
+        "displayName": "Verde vescica",
+        "canonical": "oklch(47.9% 0.117 134.6)",
+        "tonalRamp": [
+          "oklch(15% 0.117 134.6)",
+          "oklch(26% 0.117 134.6)",
+          "oklch(37% 0.117 134.6)",
+          "oklch(48% 0.117 134.6)",
+          "oklch(59% 0.117 134.6)",
+          "oklch(70% 0.117 134.6)",
+          "oklch(82% 0.117 134.6)",
+          "oklch(95% 0.117 134.6)"
+        ]
+      },
       "blue": {
         "role": "secondary",
         "displayName": "Cobalto tipografico",
@@ -123,6 +138,11 @@
           "oklch(82% 0.013 60.6)",
           "oklch(95% 0.013 60.6)"
         ]
+      },
+      "on-green": {
+        "role": "neutral",
+        "displayName": "Testo su verde",
+        "canonical": "oklch(97.3% 0.012 111.8)"
       },
       "on-blue": {
         "role": "neutral",
@@ -332,7 +352,7 @@
   ],
   "narrative": {
     "northStar": "Il muro d'affissione",
-    "overview": "**Creative North Star: \"Il muro d'affissione\"**\n\nOgni tappa del percorso è un manifesto di mostra incollato su un muro: l'opera stampata piatta sulla carta, il testo in inchiostro pieno, una sola tinta per foglio. Passare da una tappa all'altra significa incollare un manifesto nuovo sopra il precedente, con il bordo superiore strappato che lascia vedere l'anima bianca della carta. Il mondo è chiaro e tipografico: carta da affissione fredda, nero da stampa, tre tinte piatte sature (vermiglio, cobalto, giallo) e un grottesco variabile spinto al condensato più pesante.\n\nLa densità è bassa e frontale: un solo manifesto per schermo, un'opera alla volta in piena vista, nessuna griglia di miniature. L'interfaccia è stampata dentro i manifesti (navigazione nella fascia, conteggi, numerazione 07/26), mai sovrapposta all'opera. Le foto delle opere sono scatti amatoriali e restano quello che sono: mai ritagliate, mai incorniciate, mai ombreggiate.\n\nRifiuti confermati dal brief: la parete bianca da galleria con griglia masonry, il nero da galleria di lusso, il vecchio look scuro con accento arancione e verde.",
+    "overview": "**Creative North Star: \"Il muro d'affissione\"**\n\nOgni tappa del percorso è un manifesto di mostra incollato su un muro: l'opera stampata piatta sulla carta, il testo in inchiostro pieno, una sola tinta per foglio. Passare da una tappa all'altra significa incollare un manifesto nuovo sopra il precedente, con il bordo superiore strappato che lascia vedere l'anima bianca della carta. Il mondo è chiaro e tipografico: carta da affissione fredda, nero da stampa, quattro tinte piatte sature (il vermiglio della copertina, verde vescica, cobalto, giallo) e un grottesco variabile spinto al condensato più pesante.\n\nLa densità è bassa e frontale: un solo manifesto per schermo, un'opera alla volta in piena vista, nessuna griglia di miniature. L'interfaccia è stampata dentro i manifesti (navigazione nella fascia, conteggi, numerazione 07/26), mai sovrapposta all'opera. Le foto delle opere sono scatti amatoriali e restano quello che sono: mai ritagliate, mai incorniciate, mai ombreggiate.\n\nRifiuti confermati dal brief: la parete bianca da galleria con griglia masonry, il nero da galleria di lusso, il vecchio look scuro con accento arancione e verde.",
     "keyCharacteristics": [
       "Una tinta piena per schermo, assegnata alla tappa.",
       "Display Archivo a larghezza 62%, peso 900, maiuscolo, interlinea sotto 0,9.",
@@ -348,7 +368,7 @@
       },
       {
         "name": "The Inchiostri Globali Rule",
-        "body": "Le tinte di tappa si applicano solo con le classi globali `.ink-black`, `.ink-red`, `.ink-blue`, `.ink-yellow`, che impostano la coppia `--stage-ink` / `--on-stage`. I componenti leggono quella coppia; non ridefiniscono mai `--stage-ink` o `--on-stage` in CSS scoped. La mappa tappa → tinta vive in `app/data/artworks.ts` (`stages[].ink`): Disegno nero, Pittura vermiglio, Astratto cobalto, Scultura giallo.",
+        "body": "Le tinte di tappa si applicano solo con le classi globali `.ink-black`, `.ink-red`, `.ink-green`, `.ink-blue`, `.ink-yellow`, che impostano la coppia `--stage-ink` / `--on-stage`. I componenti leggono quella coppia; non ridefiniscono mai `--stage-ink` o `--on-stage` in CSS scoped. La mappa tappa → tinta vive in `app/data/artworks.ts` (`stages[].ink`): Pittura verde vescica, Astratto cobalto, Disegno nero, Scultura giallo.",
         "section": "colors"
       },
       {
@@ -388,7 +408,7 @@
       }
     ],
     "dos": [
-      "Do applicare la tinta di una superficie solo con `.ink-black` / `.ink-red` / `.ink-blue` / `.ink-yellow` e leggere `--stage-ink` / `--on-stage`.",
+      "Do applicare la tinta di una superficie solo con `.ink-black` / `.ink-red` / `.ink-green` / `.ink-blue` / `.ink-yellow` e leggere `--stage-ink` / `--on-stage`.",
       "Do tenere una sola tinta piena per schermo; due solo durante l'incollaggio.",
       "Do unire un foglio al precedente con `.torn`, impostando `--torn-ink` sul colore del foglio.",
       "Do mostrare le opere intere: proporzioni della foto, nessun ritaglio, nessuna ombra, nessuna cornice.",

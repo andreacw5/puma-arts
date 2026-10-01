@@ -130,7 +130,7 @@ onMounted(() => {
   margin-top: 0.75rem !important;
   font-stretch: 62%;
   font-weight: 900;
-  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-size: clamp(2rem, min(7vw, 11svh), 4rem);
   line-height: 1;
 }
 .work-title {
@@ -138,7 +138,7 @@ onMounted(() => {
   font-stretch: 62%;
   font-weight: 900;
   text-transform: uppercase;
-  font-size: clamp(2.75rem, 12vw, 6rem);
+  font-size: clamp(2rem, min(12vw, 14svh), 6rem);
   line-height: 0.86;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -159,14 +159,16 @@ onMounted(() => {
 .work-nav a:hover { text-decoration: underline; }
 .work-nav .is-next { grid-column: 2; text-align: right; }
 
-@media (min-width: 900px) {
+/* Same breakpoint as the walls: a phone on its side gets art beside the band. */
+@media (min-width: 900px), (orientation: landscape) and (max-height: 520px) {
   .work {
-    grid-template-rows: none;
+    grid-template-rows: minmax(0, 1fr);
     grid-template-columns: minmax(0, 66fr) minmax(0, 34fr);
     height: 100svh;
   }
   .work-art img { max-height: calc(100svh - 6rem); }
-  .work-band { padding: 2.5rem var(--gutter); align-content: space-between; }
+  /* A short window may not fit the whole band: it scrolls on its own, the artwork stays put. */
+  .work-band { padding: clamp(1rem, 5svh, 2.5rem) var(--gutter); align-content: space-between; overflow-y: auto; }
   .work-band.torn::before,
   .work-band.torn::after { display: none; }
 }

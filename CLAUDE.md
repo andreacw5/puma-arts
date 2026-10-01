@@ -12,7 +12,7 @@ app/
   assets/main.css    # token e stili condivisi (inchiostri, .torn, intro); fonte dei valori in DESIGN.md
   data/artworks.ts   # opere: fonte unica, ordine = più recenti prima
   data/site.ts       # nome, contatti, ritratto, immagine di share
-  pages/index.vue    # manifesto iniziale + percorso a pareti (scroll orizzontale guidato da GSAP)
+  pages/index.vue    # manifesto iniziale + percorso a pareti (scroll orizzontale guidato da GSAP). Ordine e inchiostri delle tappe: `stages` in data/artworks.ts
   pages/opere/[slug].vue  # opera singola: view transition dalla parete, righello in scala con A4
   pages/chi-sono.vue # ritratto + testo dell'artista + il percorso come strisce che si colorano al passaggio
   components/SiteClose.vue  # chiusura "Scrivimi." condivisa da tutte le pagine

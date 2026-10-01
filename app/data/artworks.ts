@@ -27,15 +27,16 @@ export const artworkTitle = (a: Artwork) => a.title ?? 'Senza titolo'
 export const artworkAlt = (a: Artwork) =>
   [a.title ?? `Senza titolo: ${a.subject}`, a.medium?.toLowerCase()].filter(Boolean).join(', ')
 
-/** "Grafite su cartoncino, 33 × 48 cm" */
+/** "Grafite su cartoncino, 33 × 48 cm": the size never breaks across lines. */
 export const artworkCaption = (a: Artwork) =>
-  [a.medium, a.size && `${a.size[0]} × ${a.size[1]} cm`].filter(Boolean).join(', ')
+  [a.medium, a.size && `${a.size[0]}\u00a0×\u00a0${a.size[1]}\u00a0cm`].filter(Boolean).join(', ')
 
 /** The path, stage by stage: each stage is one poster with its own ink. */
+// Painting first: it is his main work and gets the first impact of the scroll.
 export const stages = [
-  { id: 'disegno', title: 'Disegno', line: 'Dalle copie dei maestri, a grafite, china e pastello.', ink: 'black', match: (a: Artwork) => a.category === 'disegno' },
-  { id: 'figurativo', title: 'Pittura', line: 'Paesaggi, ritratti, velieri.', ink: 'red', match: (a: Artwork) => a.category === 'pittura' && !a.abstract },
+  { id: 'figurativo', title: 'Pittura', line: 'Paesaggi, ritratti, velieri.', ink: 'green', match: (a: Artwork) => a.category === 'pittura' && !a.abstract },
   { id: 'astratto', title: 'Astratto', line: 'Tempera e acrilico, senza più un soggetto.', ink: 'blue', match: (a: Artwork) => a.category === 'pittura' && !!a.abstract },
+  { id: 'disegno', title: 'Disegno', line: 'Dalle copie dei maestri, a grafite, china e pastello.', ink: 'black', match: (a: Artwork) => a.category === 'disegno' },
   { id: 'scultura', title: 'Scultura', line: 'La terracotta.', ink: 'yellow', match: (a: Artwork) => a.category === 'scultura' },
 ] as const
 

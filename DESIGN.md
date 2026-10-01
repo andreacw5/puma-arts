@@ -7,9 +7,11 @@ colors:
   ink: "#141414"
   ink-2: "#4a4843"
   red: "#e2401c"
+  green: "#3f6b1f"
   blue: "#1f3fbf"
   yellow: "#f2b705"
   on-red: "#fff6ef"
+  on-green: "#f6f7ee"
   on-blue: "#f3f5ff"
   on-yellow: "#141414"
   on-black: "#f4f3ef"
@@ -126,7 +128,7 @@ components:
 
 **Creative North Star: "Il muro d'affissione"**
 
-Ogni tappa del percorso è un manifesto di mostra incollato su un muro: l'opera stampata piatta sulla carta, il testo in inchiostro pieno, una sola tinta per foglio. Passare da una tappa all'altra significa incollare un manifesto nuovo sopra il precedente, con il bordo superiore strappato che lascia vedere l'anima bianca della carta. Il mondo è chiaro e tipografico: carta da affissione fredda, nero da stampa, tre tinte piatte sature (vermiglio, cobalto, giallo) e un grottesco variabile spinto al condensato più pesante.
+Ogni tappa del percorso è un manifesto di mostra incollato su un muro: l'opera stampata piatta sulla carta, il testo in inchiostro pieno, una sola tinta per foglio. Passare da una tappa all'altra significa incollare un manifesto nuovo sopra il precedente, con il bordo superiore strappato che lascia vedere l'anima bianca della carta. Il mondo è chiaro e tipografico: carta da affissione fredda, nero da stampa, quattro tinte piatte sature (il vermiglio della copertina, verde vescica, cobalto, giallo) e un grottesco variabile spinto al condensato più pesante.
 
 La densità è bassa e frontale: un solo manifesto per schermo, un'opera alla volta in piena vista, nessuna griglia di miniature. L'interfaccia è stampata dentro i manifesti (navigazione nella fascia, conteggi, numerazione 07/26), mai sovrapposta all'opera. Le foto delle opere sono scatti amatoriali e restano quello che sono: mai ritagliate, mai incorniciate, mai ombreggiate.
 
@@ -144,7 +146,8 @@ Rifiuti confermati dal brief: la parete bianca da galleria con griglia masonry, 
 Carta e nero da stampa come base, tre inchiostri pieni da manifesto che non convivono mai sullo stesso schermo.
 
 ### Primary
-- **Vermiglio da affissione** (`red`): la tinta del manifesto di copertina in home e della tappa Pittura. È la prima nota satura che il visitatore vede.
+- **Vermiglio da affissione** (`red`): la tinta del manifesto di copertina in home, e solo quella. È la prima nota satura che il visitatore vede.
+- **Verde vescica** (`green`): la tinta della tappa Pittura, la prima che si incolla sulla copertina. È il complementare del vermiglio, così il primo stacco dello scroll è netto, e sta a 63° di tinta dal verde HeyAtom per non confondersi con il segno del footer. Testo `on-green` a 5,67:1.
 
 ### Secondary
 - **Cobalto tipografico** (`blue`): tinta della tappa Astratto.
@@ -157,13 +160,13 @@ Carta e nero da stampa come base, tre inchiostri pieni da manifesto che non conv
 - **Anima della carta** (`paper-white`): solo il labbro di fibra bianca lungo lo strappo, più chiaro del foglio stampato.
 - **Nero da stampa** (`ink`): testo, tinta della tappa Disegno, fascia dell'opera di Disegno e chiusura del sito. Anche selezione, scrollbar e filetti da 2px.
 - **Grigio inchiostro** (`ink-2`): didascalie secondarie sotto le opere (tecnica, misure, "da" per le copie).
-- **Testo su tinta** (`on-red`, `on-blue`, `on-yellow`, `on-black`): il colore del testo stampato su ciascun inchiostro, sempre in coppia con la sua tinta.
+- **Testo su tinta** (`on-red`, `on-green`, `on-blue`, `on-yellow`, `on-black`): il colore del testo stampato su ciascun inchiostro, sempre in coppia con la sua tinta.
 - **Verde HeyAtom** (`heyatom`): solo il segno della mano nel byline "Powered by", il suo hover e il suo focus ring.
 
 ### Named Rules
 **The Una Tinta per Schermo Rule.** Su ogni schermo c'è una sola tinta piena di tappa. Due tinte convivono solo durante l'incollaggio, mentre il manifesto nuovo scorre sopra il precedente. Nella pagina "chi sono" le strisce del percorso restano carta e si inondano della loro tinta una alla volta, solo in hover o focus.
 
-**The Inchiostri Globali Rule.** Le tinte di tappa si applicano solo con le classi globali `.ink-black`, `.ink-red`, `.ink-blue`, `.ink-yellow`, che impostano la coppia `--stage-ink` / `--on-stage`. I componenti leggono quella coppia; non ridefiniscono mai `--stage-ink` o `--on-stage` in CSS scoped. La mappa tappa → tinta vive in `app/data/artworks.ts` (`stages[].ink`): Disegno nero, Pittura vermiglio, Astratto cobalto, Scultura giallo.
+**The Inchiostri Globali Rule.** Le tinte di tappa si applicano solo con le classi globali `.ink-black`, `.ink-red`, `.ink-green`, `.ink-blue`, `.ink-yellow`, che impostano la coppia `--stage-ink` / `--on-stage`. I componenti leggono quella coppia; non ridefiniscono mai `--stage-ink` o `--on-stage` in CSS scoped. La mappa tappa → tinta vive in `app/data/artworks.ts` (`stages[].ink`): nell'ordine del percorso Pittura verde vescica, Astratto cobalto, Disegno nero, Scultura giallo. La pittura viene prima perché è il lavoro principale di Emanuele e prende il primo impatto dello scroll.
 
 **The Verde Non è un Inchiostro Rule.** `heyatom` appartiene al segno della piattaforma, non al mondo: non è mai fondo, tinta di tappa, link o accento.
 
@@ -198,12 +201,12 @@ Il modello spaziale è il manifesto a tutto schermo. Ogni manifesto è alto `100
 - **Tappa (muro):** testata in tinta, poi il muro di carta con le opere in fila orizzontale (`sheet-gap` tra i fogli), centrate e allineate in verticale con la loro didascalia. Il muro tiene 40px liberi in basso per lo strappo del manifesto successivo.
 - **Pagina opera:** l'opera su carta in alto (min 62svh, immagine max 76svh), poi la fascia della tinta della sua tappa con titolo, didascalia, numerazione, scala A4 e precedente/successiva.
 
-**Layout affiancato.** Copertina e muri passano al layout affiancato a `(min-width: 900px), (orientation: landscape) and (max-height: 520px)`: un telefono in orizzontale conta come schermo largo. Copertina 62/38 (opera a sinistra, fascia a destra), "chi sono" 50/50, tappa 30/70 (testata a sinistra, muro a destra). La pagina opera va a 66/34 a 900px.
+**Layout affiancato.** Copertina e muri passano al layout affiancato a `(min-width: 900px), (orientation: landscape) and (max-height: 520px)`: un telefono in orizzontale conta come schermo largo. Copertina 62/38 (opera a sinistra, fascia a destra), "chi sono" 50/50, tappa 30/70 (testata a sinistra, muro a destra). La pagina opera va a 66/34 allo stesso punto; su uno schermo basso la fascia scorre da sola e l'opera resta ferma.
 
 ### Named Rules
 **The Muro di Uno Schermo Rule.** Ogni muro è alto esattamente `100svh`. Con il movimento attivo la tappa è sticky, lo scroll verticale fa scorrere la fila delle opere in orizzontale (GSAP ScrollTrigger, `scrub: 0.6`), poi la tappa resta ferma per un altro schermo mentre la successiva le scorre sopra (`margin-top: -100svh`). L'ultima tappa non ha nulla sopra: la chiusura segue.
 
-**The Muro Senza Movimento Rule.** Con `prefers-reduced-motion: reduce` il muro diventa uno scroller orizzontale nativo (scroll-snap al centro, scrollbar sottile visibile) e la testata mostra due bottoni, Indietro e Avanti, che spostano il muro dell'80% della sua larghezza. Quando il percorso a scorrimento è attivo i bottoni spariscono.
+**The Muro Senza Movimento Rule.** Con `prefers-reduced-motion: reduce` il muro diventa uno scroller orizzontale nativo (scroll-snap al centro) e la testata mostra due bottoni, Indietro e Avanti, che spostano il muro dell'80% della sua larghezza e si spengono agli estremi del muro. Servono perché le scrollbar in sovrimpressione di macOS non danno nulla da afferrare al mouse. Quando il percorso a scorrimento è attivo i bottoni spariscono.
 
 ## Elevation & Depth
 
@@ -224,7 +227,7 @@ Nessun raggio: ogni superficie è un foglio rettangolare a spigolo vivo (`rounde
 Un manifesto incollato sopra il precedente. Classe globale; il componente imposta `--torn-ink` sul colore del proprio foglio (di solito `var(--stage-ink)`) e, se vuole variare il profilo, `--torn-x` per spostare la maschera.
 - **`::before`:** il labbro di fibra bianca (`paper-white`), 37px che sporgono 36px sopra il foglio, maschera a 760px spostata di 41px.
 - **`::after`:** lo strappo inchiostrato in `--torn-ink`, 31px che sporgono 30px, maschera a 900px.
-- **Dove:** testata di ogni tappa, fascia della pagina opera (solo sotto i 900px, `--torn-x: 120px`), chiusura del sito (`--torn-x: 300px`).
+- **Dove:** testata di ogni tappa, fascia della pagina opera (solo nel layout impilato, `--torn-x: 120px`), chiusura del sito (`--torn-x: 300px`).
 
 ### Copertina (bill)
 Il manifesto d'apertura di una pagina: foto a tutta altezza e fascia con navigazione stampata in alto, titolo display, riga descrittiva. In home la fascia è vermiglio; in "chi sono" è carta, perché la foto notturna è già scura. La navigazione è una fila di link in grassetto (700, 0.95rem) senza sottolineatura, sottolineati in hover.
@@ -254,7 +257,7 @@ Un solo easing di sistema, `--ease-out` (cubic-bezier(0.16, 1, 0.3, 1)), anche p
 ## Do's and Don'ts
 
 ### Do:
-- **Do** applicare la tinta di una superficie solo con `.ink-black` / `.ink-red` / `.ink-blue` / `.ink-yellow` e leggere `--stage-ink` / `--on-stage`.
+- **Do** applicare la tinta di una superficie solo con `.ink-black` / `.ink-red` / `.ink-green` / `.ink-blue` / `.ink-yellow` e leggere `--stage-ink` / `--on-stage`.
 - **Do** tenere una sola tinta piena per schermo; due solo durante l'incollaggio.
 - **Do** unire un foglio al precedente con `.torn`, impostando `--torn-ink` sul colore del foglio.
 - **Do** mostrare le opere intere: proporzioni della foto, nessun ritaglio, nessuna ombra, nessuna cornice.

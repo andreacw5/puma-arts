@@ -1,16 +1,18 @@
 /* Manifesto d'affissione: poster paper, flat printing ink, one full tint per stage. */
 :root {
   --paper: #f4f3ef;
-  --paper-2: #e9e7e0;
   --ink: #141414;
   --ink-2: #4a4843;
   /* Stage inks: never two on screen at once. */
+  /* Red belongs to the cover bill; painting gets sap green so the first wall breaks from it. */
   --red: #e2401c;
+  --green: #3f6b1f;
   --blue: #1f3fbf;
   --yellow: #f2b705;
   /* Text printed on each ink. */
   --on-red: #fff6ef;
   --on-blue: #f3f5ff;
+  --on-green: #f6f7ee;
   --on-yellow: #141414;
   --on-black: #f4f3ef;
   /* The white core of torn poster paper, brighter than the printed sheet. */
@@ -64,6 +66,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 /* Stage inks: a stage's poster colour and the text printed on it. */
 .ink-black { --stage-ink: var(--ink); --on-stage: var(--on-black); }
 .ink-red { --stage-ink: var(--red); --on-stage: var(--on-red); }
+.ink-green { --stage-ink: var(--green); --on-stage: var(--on-green); }
 .ink-blue { --stage-ink: var(--blue); --on-stage: var(--on-blue); }
 .ink-yellow { --stage-ink: var(--yellow); --on-stage: var(--on-yellow); }
 
