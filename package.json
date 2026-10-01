@@ -11,7 +11,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "upload-images": "node scripts/upload-images.mjs"
+    "upload-images": "node --env-file-if-exists=.env scripts/upload-images.mjs"
   },
   "dependencies": {
     "@nuxtjs/sitemap": "^8.6.1",

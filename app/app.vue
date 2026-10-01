@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { site as artist } from '~/data/site'
+
 const site = useRuntimeConfig().public.siteUrl
 const route = useRoute()
 
@@ -11,12 +13,13 @@ useHead({
   link: [{ rel: 'canonical', href: () => site + route.path }],
 })
 
-// Share defaults: pages override title/description. og:image arrives with the artworks on FileHarbor.
+// Share defaults: pages override title, description and image.
 useSeoMeta({
   ogType: 'website',
   ogSiteName: 'Studio Arte Puma',
   ogLocale: 'it_IT',
   ogUrl: () => site + route.path,
+  ogImage: img(artist.cover, 1200),
   twitterCard: 'summary_large_image',
 })
 </script>

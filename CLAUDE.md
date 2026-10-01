@@ -11,11 +11,10 @@ app/
   app.vue            # head globale: canonical, og default, classe `js` per il motion
   assets/main.css    # token e stili base. Palette e font provvisori finché manca DESIGN.md
   data/artworks.ts   # opere: fonte unica, ordine = più recenti prima
-  data/site.ts       # nome, contatti, ritratto
+  data/site.ts       # nome, contatti, ritratto, immagine di share
   pages/
   utils/img.ts       # img/srcset per FileHarbor (?width=N)
   utils/motion.ts    # useMotion, revealLines, magnetic (copiato dal portfolio)
-public/arts/         # immagini opere, temporanee: vanno su FileHarbor
 scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts e li sostituisce
 ```
 
@@ -26,7 +25,7 @@ scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts
 - **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`.
 - **Prerender**: Nitro parte da `/` e segue i link. Una pagina non linkata da nessuna parte va aggiunta a `nitro.prerender.routes`.
 - **Opere**: titolo assente = "Senza titolo", sempre via `artworkTitle()`. `slug` stabile: è l'URL di `/opere/<slug>`. Non scrivere tecnica o misure dentro `note`.
-- **Immagini**: URL FileHarbor → `img(url, w)` / `srcset(url, widths)`. Nuova immagine: metterla in `public/`, referenziarla da `app/data/`, poi `FILEHARBOR_API_KEY=… pnpm upload-images`.
+- **Immagini**: URL FileHarbor → `img(url, w)` / `srcset(url, widths)`. Nuova immagine: metterla in `public/`, referenziarla da `app/data/`, poi `pnpm upload-images` (key in `.env`), poi cancellare il file locale.
 - **Lingua**: solo italiano.
 - **Contatti**: solo `mailto:`. Nessun form.
 
