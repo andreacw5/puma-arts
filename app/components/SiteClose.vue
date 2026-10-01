@@ -15,7 +15,6 @@ import { site } from '~/data/site'
 <style scoped>
 .close {
   position: relative;
-  min-height: 100svh;
   background: var(--ink);
   color: var(--on-black);
   padding: var(--section) var(--gutter) 2rem;

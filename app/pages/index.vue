@@ -12,6 +12,13 @@ const cover = artworks.find(a => a.slug === 'papaveri')!
 const total = artworks.length
 const pad = (i: number) => String(i).padStart(2, '0')
 
+// Without the walk (reduced motion) the wall is a plain scroller; overlay scrollbars give mouse users
+// nothing to grab, so the poster carries two buttons that move it by most of a screen.
+function slide(e: MouseEvent, dir: 1 | -1) {
+  const wall = (e.currentTarget as HTMLElement).closest('.stage-in')!.querySelector<HTMLElement>('.wall')!
+  wall.scrollBy({ left: dir * wall.clientWidth * 0.8 })
+}
+
 const root = ref<HTMLElement>()
 useMotion(root, (mm, el) => {
   mm.add(MOTION_OK, () => {
@@ -84,6 +91,10 @@ useMotion(root, (mm, el) => {
             <h2 :id="`stage-${stage.id}`" class="stage-title">{{ stage.title }}</h2>
             <p class="stage-line">{{ stage.line }}</p>
             <p class="stage-count">{{ stage.works.length }} {{ stage.works.length === 1 ? 'opera' : 'opere' }}</p>
+            <p v-if="stage.works.length > 1" class="wall-nav">
+              <button type="button" @click="slide($event, -1)">Indietro</button>
+              <button type="button" @click="slide($event, 1)">Avanti</button>
+            </p>
           </header>
 
           <div class="wall">
@@ -215,6 +226,20 @@ useMotion(root, (mm, el) => {
 }
 .stage-line { margin: 0; max-width: 32ch; font-size: clamp(1rem, 1.6vw, 1.25rem); font-weight: 500; }
 .stage-count { margin: 0; font-weight: 700; font-size: 0.9rem; }
+.wall-nav { margin: 0.4rem 0 0; display: flex; gap: 0.5rem; }
+.wall-nav button {
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: inherit;
+  background: none;
+  border: 2px solid currentColor;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+}
+.wall-nav button:hover { background: var(--on-stage); color: var(--stage-ink); }
+/* Walking moves the wall already. */
+.is-walk .wall-nav { display: none; }
 
 /* Without the walk the wall is a plain horizontal scroller. */
 .wall {
@@ -223,7 +248,10 @@ useMotion(root, (mm, el) => {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   overscroll-behavior-x: contain;
-  scrollbar-width: none;
+  /* Fallback (no walk): keep the bar, mouse users need something to drag. */
+  scrollbar-width: thin;
+  /* Clear of the next poster's torn edge, which overlaps the last ~36px of this wall. */
+  margin-bottom: 40px;
 }
 .sheets {
   list-style: none;
@@ -241,27 +269,24 @@ useMotion(root, (mm, el) => {
 }
 .sheet-link {
   height: 100%;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  align-content: center;
+  /* Painting and caption sit together at eye level, centred on the wall. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 0.7rem;
   text-decoration: none;
 }
-/* Never crop an artwork: height is set by the wall, width by the photo. */
+/* Never crop an artwork, and the box is the artwork: pasted flat on the wall, no frame, no shadow. */
 .sheet img {
-  height: 100%;
+  align-self: flex-start;
   width: auto;
+  height: auto;
+  /* Leave room for the caption under it. */
+  max-height: calc(100% - 5.3rem);
   max-width: 82vw;
-  object-fit: contain;
-  object-position: left bottom;
-  box-shadow: 0 1px 2px rgb(20 20 20 / 0.12), 0 12px 28px -14px rgb(20 20 20 / 0.35);
-  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
 }
-.sheet-link:hover img,
-.sheet-link:focus-visible img {
-  transform: translateY(-6px);
-  box-shadow: 0 2px 4px rgb(20 20 20 / 0.12), 0 22px 40px -18px rgb(20 20 20 / 0.45);
-}
+.sheet-link:hover .sheet-title,
+.sheet-link:focus-visible .sheet-title { text-decoration: underline; text-decoration-thickness: 2px; }
 .sheet-meta {
   display: grid;
   gap: 0.05rem;
@@ -278,14 +303,15 @@ useMotion(root, (mm, el) => {
   .stage-in { grid-template-rows: minmax(0, 1fr); grid-template-columns: minmax(0, 30fr) minmax(0, 70fr); }
   .stage-head { align-content: end; padding: 2rem var(--gutter) 2.5rem; }
   .stage-title { font-size: clamp(2.25rem, min(21cqi, 17svh), 9rem); }
-  .sheets { padding-block: clamp(1.5rem, 7svh, 4rem) clamp(1rem, 4svh, 2.5rem); }
+  .sheets { padding-block: clamp(1.5rem, 7svh, 4rem) clamp(1rem, 4svh, 2.5rem); align-items: stretch; }
 }
 
 /* ---------- The walk (motion only) ---------- */
-/* Each stage holds still for its wall, then for one more screen while the next one slides over it. */
+/* Each stage holds still for its wall, then for one more screen while the next one slides over it.
+   The last one has nothing pasted over it: the close simply follows. */
 .is-walk .stage { height: calc(200svh + var(--walk, 0px)); }
+.is-walk .stage:last-child { height: calc(100svh + var(--walk, 0px)); }
 .is-walk .stage + .stage { margin-top: -100svh; }
-.is-walk { margin-bottom: -100svh; }
 .is-walk .stage-in { position: sticky; top: 0; }
 .is-walk .wall { overflow: clip; }
 

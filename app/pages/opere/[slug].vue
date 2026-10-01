@@ -23,7 +23,10 @@ useSeoMeta({
 // The size drawn to scale next to an A4 sheet, so "33 × 48 cm" reads as an object.
 const A4: [number, number] = [21, 29.7]
 const scale = w.size && (() => {
-  const [aw, ah] = w.size!
+  // Draw the long side the way the photo runs: the caption order is not always width × height.
+  const [s1, s2] = w.size!
+  const landscape = w.px[0] > w.px[1]
+  const [aw, ah] = landscape ? [Math.max(s1, s2), Math.min(s1, s2)] : [Math.min(s1, s2), Math.max(s1, s2)]
   const gap = 4
   return { aw, ah, vw: A4[0] + gap + aw, vh: Math.max(A4[1], ah), gap }
 })()
@@ -54,14 +57,14 @@ onMounted(() => {
     </figure>
 
     <div class="work-band torn" style="--torn-x: 120px">
-      <NuxtLink class="work-back" :to="`/#${w.stage.id}`">← {{ w.stage.title }}</NuxtLink>
+      <NuxtLink class="work-back" :to="`/#${w.stage.id}`">Torna a {{ w.stage.title }}</NuxtLink>
 
       <div class="work-id">
-        <p class="work-n">{{ pad(w.n) }}/{{ total }}</p>
         <h1 class="work-title">{{ title }}</h1>
         <p v-if="caption" class="work-cap">{{ caption }}</p>
         <p v-if="w.copyOf" class="work-copy">Copia da {{ w.copyOf }}</p>
         <p v-if="w.note" class="work-note">{{ w.note }}</p>
+        <p class="work-n" :aria-label="`Opera ${w.n} di ${total}`">{{ pad(w.n) }}/{{ total }}</p>
       </div>
 
       <figure v-if="scale" class="work-scale">
@@ -73,7 +76,7 @@ onMounted(() => {
           <rect class="a4" :x="0.15" :y="scale.vh - A4[1] + 0.15" :width="A4[0] - 0.3" :height="A4[1] - 0.3" />
           <rect class="art" :x="A4[0] + scale.gap" :y="scale.vh - scale.ah" :width="scale.aw" :height="scale.ah" />
         </svg>
-        <figcaption><span>A4</span><span>{{ scale.aw }} × {{ scale.ah }} cm</span></figcaption>
+        <figcaption><span>A4</span><span>{{ w.size![0] }} × {{ w.size![1] }} cm</span></figcaption>
       </figure>
 
       <nav class="work-nav" aria-label="Opere">
@@ -106,7 +109,6 @@ onMounted(() => {
   max-height: 76svh;
   width: auto;
   max-width: 100%;
-  box-shadow: 0 2px 4px rgb(20 20 20 / 0.12), 0 24px 48px -24px rgb(20 20 20 / 0.45);
 }
 
 .work-band {
@@ -124,7 +126,13 @@ onMounted(() => {
 
 .work-id { display: grid; gap: 0.3rem; }
 .work-id p { margin: 0; }
-.work-n { font-weight: 700; }
+.work-n {
+  margin-top: 0.75rem !important;
+  font-stretch: 62%;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  line-height: 1;
+}
 .work-title {
   margin: 0;
   font-stretch: 62%;
@@ -159,6 +167,7 @@ onMounted(() => {
   }
   .work-art img { max-height: calc(100svh - 6rem); }
   .work-band { padding: 2.5rem var(--gutter); align-content: space-between; }
-  .work-band.torn::before { display: none; }
+  .work-band.torn::before,
+  .work-band.torn::after { display: none; }
 }
 </style>

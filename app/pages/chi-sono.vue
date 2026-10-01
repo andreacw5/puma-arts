@@ -17,7 +17,7 @@ useMotion(root, (mm, el) => {
 
 <template>
   <div ref="root">
-    <section class="bill ink-black" aria-labelledby="title">
+    <section class="bill" aria-labelledby="title">
       <img
         class="bill-art intro-art"
         :src="img(site.portrait, 1200)"
@@ -70,7 +70,7 @@ useMotion(root, (mm, el) => {
           <NuxtLink :to="`/#${stage.id}`" class="path-link">
             <span class="path-name">{{ stage.title }}</span>
             <span class="path-line">{{ stage.line }}</span>
-            <span class="path-count">{{ stage.works.length }} {{ stage.works.length === 1 ? 'opera' : 'opere' }} →</span>
+            <span class="path-count">{{ stage.works.length }} {{ stage.works.length === 1 ? 'opera' : 'opere' }}</span>
           </NuxtLink>
         </li>
       </ol>
@@ -86,8 +86,9 @@ useMotion(root, (mm, el) => {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   height: 100svh;
-  background: var(--stage-ink);
-  color: var(--on-stage);
+  /* Paper, not ink: the night photo is dark enough, the poster around it stays light. */
+  background: var(--paper);
+  color: var(--ink);
 }
 .bill-art { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
 .bill-band {

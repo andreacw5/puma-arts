@@ -7,3 +7,5 @@ dist
 .DS_Store
 .env
 .env.*
+.impeccable/review
+.impeccable/config.local.json

@@ -13,6 +13,8 @@
   --on-blue: #f3f5ff;
   --on-yellow: #141414;
   --on-black: #f4f3ef;
+  /* The white core of torn poster paper, brighter than the printed sheet. */
+  --paper-white: #fdfcf9;
   /* HeyAtom's own green: only for the platform mark in the close, never as a stage ink. */
   --heyatom: #00a86b;
 
@@ -65,16 +67,28 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 .ink-blue { --stage-ink: var(--blue); --on-stage: var(--on-blue); }
 .ink-yellow { --stage-ink: var(--yellow); --on-stage: var(--on-yellow); }
 
-/* Torn top edge: a poster pasted over what came before. Set --torn-ink to the poster's colour. */
+/* Torn top edge: a poster pasted over what came before. Set --torn-ink to the poster's colour.
+   ::before is the paper's white core showing along the tear, ::after the inked sheet over it. */
 .torn { position: relative; }
-.torn::before {
+.torn::before,
+.torn::after {
   content: '';
   position: absolute;
-  inset: -22px 0 auto;
-  height: 23px;
-  background: var(--torn-ink, var(--ink));
-  mask: url('/edge.svg') repeat-x var(--torn-x, 0) 0 / 900px 100%;
+  left: 0;
+  right: 0;
   pointer-events: none;
+}
+.torn::before {
+  top: -36px;
+  height: 37px;
+  background: var(--paper-white);
+  mask: url('/edge.svg') repeat-x calc(var(--torn-x, 0px) + 41px) 0 / 760px 100%;
+}
+.torn::after {
+  top: -30px;
+  height: 31px;
+  background: var(--torn-ink, var(--ink));
+  mask: url('/edge.svg') repeat-x var(--torn-x, 0px) 0 / 900px 100%;
 }
 
 ::view-transition-group(*) { animation-duration: 0.55s; animation-timing-function: var(--ease-out); }
