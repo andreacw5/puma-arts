@@ -44,7 +44,7 @@ Un artista vero con un percorso vero: dalla copia dei maestri (Cézanne, Picasso
 ## Evidence on Hand
 
 - 26 opere con foto e dati: `app/data/artworks.ts`.
-- Ritratto dell'artista nello studio: `site.portrait` in `app/data/site.ts`.
+- Ritratto dell'artista: foto notturna di profilo davanti a fontane illuminate, `site.portrait` in `app/data/site.ts`. Non è nello studio.
 - Testi "chi sono" del vecchio sito: `git show main:pages/about.vue`. Contengono affermazioni da riconfermare con l'artista prima di riusarle: "oltre 100 opere realizzate", impegni universitari e lavorativi, commissioni già realizzate per privati.
 - **Assenti, non inventare:** mostre, premi, studi artistici, anni delle opere, prezzi, recensioni, citazioni di terzi.
 

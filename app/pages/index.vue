@@ -47,7 +47,7 @@ useMotion(root, (mm, el) => {
 </script>
 
 <template>
-  <div ref="root">
+  <div ref="root" class="home">
     <section class="bill" aria-labelledby="name">
       <img
         class="bill-art"
@@ -62,6 +62,7 @@ useMotion(root, (mm, el) => {
       <div class="bill-band">
         <nav class="bill-nav" aria-label="Sezioni">
           <a href="#percorso">Opere</a>
+          <NuxtLink to="/chi-sono">Chi sono</NuxtLink>
           <a href="#contatti">Contatti</a>
         </nav>
         <h1 id="name" class="bill-name">
@@ -82,7 +83,7 @@ useMotion(root, (mm, el) => {
         :class="`ink-${stage.ink}`"
         :aria-labelledby="`stage-${stage.id}`"
       >
-        <div class="stage-in">
+        <div class="stage-in torn">
           <header class="stage-head">
             <h2 :id="`stage-${stage.id}`" class="stage-title">{{ stage.title }}</h2>
             <p class="stage-line">{{ stage.line }}</p>
@@ -117,12 +118,7 @@ useMotion(root, (mm, el) => {
       </section>
     </div>
 
-    <footer id="contatti" class="close">
-      <p class="close-say">Scrivimi.</p>
-      <a class="close-mail" :href="`mailto:${site.email}`">{{ site.email }}</a>
-      <a class="close-ig" :href="site.instagram.url">Instagram {{ site.instagram.handle }}</a>
-      <p class="close-credit">Sito di <a href="https://heyatom.dev">Andrea Tombolato</a></p>
-    </footer>
+    <SiteClose />
   </div>
 </template>
 
@@ -174,9 +170,9 @@ useMotion(root, (mm, el) => {
 .ln { display: block; overflow: clip; padding-top: 0.04em; }
 .ln > span { display: block; }
 /* Hidden before first paint only when motion will reveal them. The whole selector is global:
-   in scoped CSS `:global(.js) .x` compiles to plain `.js`. */
-:global(.js .bill-art) { clip-path: inset(0 0 100% 0); }
-:global(.js .bill-name .ln > span) { transform: translateY(110%); }
+   in scoped CSS `:global(.js) .x` compiles to plain `.js`. Global, so scoped to .home by hand. */
+:global(.js .home .bill-art) { clip-path: inset(0 0 100% 0); }
+:global(.js .home .bill-name .ln > span) { transform: translateY(110%); }
 
 .bill-line { margin: 0.4rem 0 0; font-weight: 600; font-size: 1.05rem; }
 .bill-credit { margin: 0; font-size: 0.8rem; opacity: 0.85; }
@@ -196,30 +192,17 @@ useMotion(root, (mm, el) => {
 
 /* ---------- Stages: one wall each ---------- */
 .stage {
-  --stage-ink: var(--ink);
-  --on-stage: var(--on-black);
   position: relative;
 }
-.ink-red { --stage-ink: var(--red); --on-stage: var(--on-red); }
-.ink-blue { --stage-ink: var(--blue); --on-stage: var(--on-blue); }
-.ink-yellow { --stage-ink: var(--yellow); --on-stage: var(--on-yellow); }
 
 .stage-in {
+  --torn-ink: var(--stage-ink);
   position: relative;
   /* Exactly one screen: the wall is sticky, anything taller hides under the fold. */
   height: 100svh;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   background: var(--paper);
-}
-/* Torn top edge: the new poster pasted over the previous one. */
-.stage-in::before {
-  content: '';
-  position: absolute;
-  inset: -22px 0 auto;
-  height: 23px;
-  background: var(--stage-ink);
-  mask: url('/edge.svg') repeat-x 0 0 / 900px 100%;
 }
 
 .stage-head {
@@ -316,35 +299,4 @@ useMotion(root, (mm, el) => {
 .is-walk .stage-in { position: sticky; top: 0; }
 .is-walk .wall { overflow: clip; }
 
-/* ---------- Close ---------- */
-.close {
-  position: relative;
-  min-height: 100svh;
-  background: var(--ink);
-  color: var(--on-black);
-  padding: var(--section) var(--gutter) 2rem;
-  display: grid;
-  gap: 0.75rem;
-  align-content: end;
-  justify-items: start;
-}
-.close::before {
-  content: '';
-  position: absolute;
-  inset: -22px 0 auto;
-  height: 23px;
-  background: var(--ink);
-  mask: url('/edge.svg') repeat-x 300px 0 / 900px 100%;
-}
-.close-say {
-  margin: 0;
-  font-stretch: 62%;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: clamp(4rem, 19vw, 11rem);
-  line-height: 0.85;
-}
-.close-mail { font-size: clamp(1.1rem, 3vw, 1.6rem); font-weight: 700; overflow-wrap: anywhere; }
-.close-ig { font-weight: 600; }
-.close-credit { margin: 3rem 0 0; font-size: 0.85rem; opacity: 0.75; }
 </style>

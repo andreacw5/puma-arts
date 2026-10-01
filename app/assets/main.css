@@ -53,6 +53,24 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 
 :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
 
+/* Stage inks: a stage's poster colour and the text printed on it. */
+.ink-black { --stage-ink: var(--ink); --on-stage: var(--on-black); }
+.ink-red { --stage-ink: var(--red); --on-stage: var(--on-red); }
+.ink-blue { --stage-ink: var(--blue); --on-stage: var(--on-blue); }
+.ink-yellow { --stage-ink: var(--yellow); --on-stage: var(--on-yellow); }
+
+/* Torn top edge: a poster pasted over what came before. Set --torn-ink to the poster's colour. */
+.torn { position: relative; }
+.torn::before {
+  content: '';
+  position: absolute;
+  inset: -22px 0 auto;
+  height: 23px;
+  background: var(--torn-ink, var(--ink));
+  mask: url('/edge.svg') repeat-x var(--torn-x, 0) 0 / 900px 100%;
+  pointer-events: none;
+}
+
 ::view-transition-group(*) { animation-duration: 0.55s; animation-timing-function: var(--ease-out); }
 
 @media (prefers-reduced-motion: reduce) {

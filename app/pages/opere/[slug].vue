@@ -53,7 +53,7 @@ onMounted(() => {
       >
     </figure>
 
-    <div class="work-band">
+    <div class="work-band torn" style="--torn-x: 120px">
       <NuxtLink class="work-back" :to="`/#${w.stage.id}`">← {{ w.stage.title }}</NuxtLink>
 
       <div class="work-id">
@@ -90,15 +90,10 @@ onMounted(() => {
 
 <style scoped>
 .work {
-  --stage-ink: var(--ink);
-  --on-stage: var(--on-black);
   min-height: 100svh;
   display: grid;
   grid-template-rows: auto auto;
 }
-.ink-red { --stage-ink: var(--red); --on-stage: var(--on-red); }
-.ink-blue { --stage-ink: var(--blue); --on-stage: var(--on-blue); }
-.ink-yellow { --stage-ink: var(--yellow); --on-stage: var(--on-yellow); }
 
 .work-art {
   margin: 0;
@@ -115,6 +110,7 @@ onMounted(() => {
 }
 
 .work-band {
+  --torn-ink: var(--stage-ink);
   position: relative;
   background: var(--stage-ink);
   color: var(--on-stage);
@@ -122,14 +118,6 @@ onMounted(() => {
   display: grid;
   gap: 1.75rem;
   align-content: start;
-}
-.work-band::before {
-  content: '';
-  position: absolute;
-  inset: -22px 0 auto;
-  height: 23px;
-  background: var(--stage-ink);
-  mask: url('/edge.svg') repeat-x 120px 0 / 900px 100%;
 }
 .work-back { font-weight: 700; text-decoration: none; justify-self: start; }
 .work-back:hover { text-decoration: underline; }
@@ -171,6 +159,6 @@ onMounted(() => {
   }
   .work-art img { max-height: calc(100svh - 6rem); }
   .work-band { padding: 2.5rem var(--gutter); align-content: space-between; }
-  .work-band::before { display: none; }
+  .work-band.torn::before { display: none; }
 }
 </style>
