@@ -12,7 +12,9 @@ app/
   assets/main.css    # token e stili base. Palette e font provvisori finché manca DESIGN.md
   data/artworks.ts   # opere: fonte unica, ordine = più recenti prima
   data/site.ts       # nome, contatti, ritratto, immagine di share
-  pages/
+  pages/index.vue    # manifesto iniziale + percorso a pareti (scroll orizzontale guidato da GSAP)
+  pages/opere/[slug].vue  # opera singola: view transition dalla parete, righello in scala con A4
+  plugins/motion.client.ts  # ScrollTrigger.refresh dopo ogni pagina
   utils/img.ts       # img/srcset per FileHarbor (?width=N)
   utils/motion.ts    # useMotion, revealLines, magnetic (copiato dal portfolio)
 scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts e li sostituisce
@@ -21,7 +23,9 @@ scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts
 ## Regole
 
 - **Stile**: CSS scoped nei componenti + token da `main.css`. Mai colori hardcoded.
-- **Motion**: sempre via `useMotion(root, (mm, el) => …)`, animazioni dentro `mm.add(MOTION_OK, …)`.
+- **Motion**: sempre via `useMotion(root, (mm, el) => …)`, animazioni dentro `mm.add(MOTION_OK, …)`. Senza motion le pareti sono normali scroller orizzontali.
+- **CSS scoped + `.js`**: scrivere `:global(.js .x)`, mai `:global(.js) .x`: Vue compila il secondo in `.js` e applica le regole a `<html>`.
+- **Direzione visiva**: "Manifesto d'affissione", contratto in `.impeccable/surfaces/app-pages-index-vue.md`. `PRODUCT.md` per il prodotto; `DESIGN.md` arriva a build finita.
 - **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`.
 - **Prerender**: Nitro parte da `/` e segue i link. Una pagina non linkata da nessuna parte va aggiunta a `nitro.prerender.routes`.
 - **Opere**: titolo assente = "Senza titolo", sempre via `artworkTitle()`. `slug` stabile: è l'URL di `/opere/<slug>`. Non scrivere tecnica o misure dentro `note`.

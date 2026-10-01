@@ -53,13 +53,11 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 
 :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
 
-.page-enter-active,
-.page-leave-active { transition: opacity 0.35s var(--ease-out); }
-.page-enter-from,
-.page-leave-to { opacity: 0; }
+::view-transition-group(*) { animation-duration: 0.55s; animation-timing-function: var(--ease-out); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .page-enter-active,
-  .page-leave-active { transition: none; }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none; }
 }

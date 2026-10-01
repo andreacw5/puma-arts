@@ -62,3 +62,8 @@ export const artworks: Artwork[] = [
   { slug: 'il-coraggio-di-guardare', title: 'Il coraggio di guardare', category: 'pittura', medium: 'Tempera su tela', size: [30, 40], image: 'https://fileharbor.heyatom.dev/v2/images/3e9e8e06-8875-4896-ae35-f2cb7ee38af1', px: [1080, 1350] },
   { slug: 'fiordi-ghiacciati-all-alba', title: "Fiordi ghiacciati all'alba", category: 'pittura', medium: 'Su tela', size: [40, 50], image: 'https://fileharbor.heyatom.dev/v2/images/20e121af-2e16-4327-84fc-a8c44ebe7f7c', px: [1080, 851] },
 ]
+
+/** Stages with their works, numbered across the whole path (07/26). Home and detail pages share it. */
+let n = 0
+export const path = stages.map(s => ({ ...s, works: artworks.filter(s.match).map(w => ({ ...w, n: ++n })) }))
+export const pathOrder = path.flatMap(s => s.works.map(w => ({ ...w, stage: s })))
