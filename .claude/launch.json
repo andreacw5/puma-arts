@@ -1,6 +1,38 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "puma-arts", "runtimeExecutable": "pnpm", "runtimeArgs": ["--dir", "/Users/atombolato/Documents/Repository/HeyAtom.nosync/puma-arts", "dev", "--port", "3220"], "port": 3220 }
+    {
+      "name": "puma-arts",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "/Users/atombolato/Documents/Repository/HeyAtom.nosync/puma-arts",
+        "dev",
+        "--port",
+        "3220"
+      ],
+      "port": 3220
+    },
+    {
+      "name": "puma-arts-build",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/atombolato/Documents/Repository/HeyAtom.nosync/puma-arts && PORT=3221 node .output/server/index.mjs"
+      ],
+      "port": 3221
+    },
+    {
+      "name": "puma-arts-dev-alt",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "/Users/atombolato/Documents/Repository/HeyAtom.nosync/puma-arts",
+        "dev",
+        "--port",
+        "3223"
+      ],
+      "port": 3223
+    }
   ]
 }

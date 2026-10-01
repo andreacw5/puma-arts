@@ -3,11 +3,35 @@ import { path } from '~/data/artworks'
 import { site } from '~/data/site'
 import { MOTION_OK, pasteIn, useMotion } from '~/utils/motion'
 
+const { t, tm } = useI18n()
+const localePath = useLocalePath()
+const siteUrl = useRuntimeConfig().public.siteUrl
+
 useSeoMeta({
-  title: 'Chi sono',
-  description: 'Emanuele Puma, pittore e scultore: un artista da sempre, dalle prime copie dei maestri all\'astratto.',
+  title: () => t('about.seo.title'),
+  description: () => t('about.seo.description'),
+  ogTitle: () => `${site.artist} · ${t('about.seo.title')}`,
+  ogDescription: () => t('about.seo.description'),
   ogImage: img(site.portrait, 1200),
+  ogImageAlt: () => t('about.portraitAlt', { artist: site.artist }),
 })
+
+// Who the artist is, for search engines: the name, the craft, where else he shows his work.
+useHead(() => ({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': site.artist,
+      'jobTitle': t('about.job'),
+      'image': img(site.portrait, 1200),
+      'url': siteUrl + localePath('/chi-sono'),
+      'email': `mailto:${site.email}`,
+      'sameAs': [site.instagram.url],
+    }),
+  }],
+}))
 
 const root = ref<HTMLElement>()
 useMotion(root, (mm, el) => {
@@ -25,52 +49,34 @@ useMotion(root, (mm, el) => {
         sizes="(min-width: 900px) 50vw, 100vw"
         :width="site.portraitPx[0]"
         :height="site.portraitPx[1]"
-        :alt="`${site.artist} di profilo, di notte, davanti a fontane illuminate`"
+        :alt="t('about.portraitAlt', { artist: site.artist })"
         fetchpriority="high"
       >
       <div class="bill-band">
-        <nav class="bill-nav" aria-label="Sezioni">
-          <NuxtLink to="/">Opere</NuxtLink>
-          <a href="#contatti">Contatti</a>
+        <nav class="bill-nav" :aria-label="t('nav.label')">
+          <NuxtLink :to="localePath('/')">{{ t('nav.works') }}</NuxtLink>
+          <a href="#contatti">{{ t('nav.contact') }}</a>
         </nav>
-        <h1 id="title" class="bill-title intro-heading">Un artista da sempre</h1>
-        <p class="bill-line">{{ site.artist }}, pittore e scultore</p>
+        <h1 id="title" class="bill-title intro-heading">{{ t('about.title') }}</h1>
+        <p class="bill-line">{{ t('about.line', { artist: site.artist }) }}</p>
       </div>
     </section>
 
-    <section class="story" aria-label="Chi sono">
-      <p class="story-quote">Ogni opera che creo è una parte di me.</p>
+    <section class="story" :aria-label="t('nav.about')">
+      <p class="story-quote">{{ t('about.quote') }}</p>
       <div class="story-text">
-        <p>
-          Sin da bambino, fin dai primi progetti scolastici, sono stato affascinato dal mondo dell'arte.
-          Pittura, scultura e ogni forma di espressione visiva sono diventati il mio linguaggio, una passione
-          che è cresciuta con me e che non mi ha mai abbandonato.
-        </p>
-        <p>
-          Ogni opera rappresenta i miei pensieri, le mie emozioni e la mia visione del mondo. Attraverso ogni
-          pennellata e ogni dettaglio scultoreo cerco di trasmettere qualcosa di unico e profondo, che possa
-          toccare l'anima di chi osserva.
-        </p>
-        <p>
-          Le mie opere sono lo specchio del mio vissuto, una finestra aperta sulla mia interiorità e sul modo
-          in cui percepisco il mondo. Ogni creazione, sia essa un dipinto o una scultura, è un'estensione di me
-          stesso, un pezzo della mia anima che prende forma e colore.
-        </p>
-        <p>
-          Adoro sperimentare tecniche e stili diversi, cercando sempre di evolvermi e di esprimere in modo
-          autentico le mie emozioni.
-        </p>
+        <p v-for="(_, i) in tm('about.story')" :key="i">{{ t(`about.story.${i}`) }}</p>
       </div>
     </section>
 
     <nav class="path" aria-labelledby="path-title">
-      <h2 id="path-title" class="path-title">Il percorso</h2>
+      <h2 id="path-title" class="path-title">{{ t('about.path') }}</h2>
       <ol class="path-list">
         <li v-for="stage in path" :key="stage.id" class="path-item" :class="`ink-${stage.ink}`">
-          <NuxtLink :to="`/#${stage.id}`" class="path-link">
-            <span class="path-name">{{ stage.title }}</span>
-            <span class="path-line">{{ stage.line }}</span>
-            <span class="path-count">{{ stage.works.length }} {{ stage.works.length === 1 ? 'opera' : 'opere' }}</span>
+          <NuxtLink :to="localePath(`/#${stage.id}`)" class="path-link">
+            <span class="path-name">{{ t(`stages.${stage.id}.title`) }}</span>
+            <span class="path-line">{{ t(`stages.${stage.id}.line`) }}</span>
+            <span class="path-count">{{ t('count', stage.works.length) }}</span>
           </NuxtLink>
         </li>
       </ol>

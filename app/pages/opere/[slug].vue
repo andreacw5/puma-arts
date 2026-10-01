@@ -1,23 +1,71 @@
 <script setup lang="ts">
-import { artworkAlt, artworkTitle, artworkCaption, pathOrder } from '~/data/artworks'
+import { artworkAlt, artworkTitle, artworkCaption, artworkText, pathOrder } from '~/data/artworks'
 import { site } from '~/data/site'
 
 const route = useRoute()
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
+const siteUrl = useRuntimeConfig().public.siteUrl
 const i = pathOrder.findIndex(w => w.slug === route.params.slug)
-if (i < 0) throw createError({ statusCode: 404, statusMessage: 'Opera non trovata', fatal: true })
+if (i < 0) throw createError({ statusCode: 404, statusMessage: t('work.notFound'), fatal: true })
 
 const w = pathOrder[i]!
 const prev = pathOrder[i - 1]
 const next = pathOrder[i + 1]
 const total = pathOrder.length
 const pad = (n: number) => String(n).padStart(2, '0')
-const title = artworkTitle(w)
-const caption = artworkCaption(w)
+// Full reload on a language switch: the locale is fixed for the life of the page.
+const lang = locale.value
+const text = artworkText(w, lang)
+const title = artworkTitle(w, lang)
+const caption = artworkCaption(w, lang)
+const stageTitle = t(`stages.${w.stage.id}.title`)
+const cap = (s: string) => s[0]!.toUpperCase() + s.slice(1)
+
+// Untitled works share a title: the search result gets their number on the path to tell them apart.
+const seoTitle = t('work.seoTitle', {
+  title: text.title ?? t('work.untitled', { n: pad(w.n) }),
+  kind: t(`kind.${w.category}`).toLowerCase(),
+  artist: site.artist,
+})
+// Whose it is, what it shows, what it is made of, whose copy, then the stage it hangs in:
+// every work gets a description of its own, even with no medium or note.
+const description = [
+  seoTitle + '.',
+  text.subject && cap(text.subject) + '.',
+  caption && caption + '.',
+  w.copyOf && t('work.copyOf', { author: w.copyOf }) + '.',
+  text.note,
+  t('work.from', { stage: stageTitle, line: t(`stages.${w.stage.id}.line`) }),
+].filter(Boolean).join(' ')
 
 useSeoMeta({
-  title,
-  description: [w.subject && w.subject[0]!.toUpperCase() + w.subject.slice(1), caption, w.copyOf && `Copia da ${w.copyOf}`, `Opera di ${site.artist}`].filter(Boolean).join('. '),
+  title: seoTitle,
+  description,
+  ogTitle: seoTitle,
+  ogDescription: description,
   ogImage: img(w.image, 1200),
+  ogImageAlt: artworkAlt(w, lang),
+})
+
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'VisualArtwork',
+      'name': title,
+      'description': description,
+      'image': img(w.image, 1600),
+      'url': siteUrl + localePath(`/opere/${w.slug}`),
+      'inLanguage': lang,
+      'artform': t(`kind.${w.category}`),
+      'artMedium': text.medium,
+      'width': w.size && { '@type': 'Distance', 'name': `${w.size[0]} cm` },
+      'height': w.size && { '@type': 'Distance', 'name': `${w.size[1]} cm` },
+      'creator': { '@type': 'Person', 'name': site.artist, 'url': siteUrl + localePath('/chi-sono') },
+    }),
+  }],
 })
 
 // The size drawn to scale next to an A4 sheet, so "33 × 48 cm" reads as an object.
@@ -35,7 +83,7 @@ const scale = w.size && (() => {
 onMounted(() => {
   const go = (e: KeyboardEvent) => {
     const to = e.key === 'ArrowLeft' ? prev : e.key === 'ArrowRight' ? next : undefined
-    if (to) navigateTo(`/opere/${to.slug}`)
+    if (to) navigateTo(localePath(`/opere/${to.slug}`))
   }
   window.addEventListener('keydown', go)
   onBeforeUnmount(() => window.removeEventListener('keydown', go))
@@ -51,27 +99,27 @@ onMounted(() => {
         sizes="(min-width: 900px) 66vw, 100vw"
         :width="w.px[0]"
         :height="w.px[1]"
-        :alt="artworkAlt(w)"
+        :alt="artworkAlt(w, lang)"
         :style="{ viewTransitionName: `art-${w.slug}` }"
       >
     </figure>
 
     <div class="work-band torn" style="--torn-x: 120px">
-      <NuxtLink class="work-back" :to="`/#${w.stage.id}`">Torna a {{ w.stage.title }}</NuxtLink>
+      <NuxtLink class="work-back" :to="localePath(`/#${w.stage.id}`)">{{ t('work.back', { stage: stageTitle }) }}</NuxtLink>
 
       <div class="work-id">
         <h1 class="work-title">{{ title }}</h1>
         <p v-if="caption" class="work-cap">{{ caption }}</p>
-        <p v-if="w.copyOf" class="work-copy">Copia da {{ w.copyOf }}</p>
-        <p v-if="w.note" class="work-note">{{ w.note }}</p>
-        <p class="work-n" :aria-label="`Opera ${w.n} di ${total}`">{{ pad(w.n) }}/{{ total }}</p>
+        <p v-if="w.copyOf" class="work-copy">{{ t('work.copyOf', { author: w.copyOf }) }}</p>
+        <p v-if="text.note" class="work-note">{{ text.note }}</p>
+        <p class="work-n" :aria-label="t('work.n', { n: w.n, total })">{{ pad(w.n) }}/{{ total }}</p>
       </div>
 
       <figure v-if="scale" class="work-scale">
         <svg
           :viewBox="`0 0 ${scale.vw} ${scale.vh}`"
           role="img"
-          :aria-label="`Dimensioni in scala: ${scale.aw} per ${scale.ah} centimetri, accanto a un foglio A4`"
+          :aria-label="t('work.scale', { w: scale.aw, h: scale.ah })"
         >
           <rect class="a4" :x="0.15" :y="scale.vh - A4[1] + 0.15" :width="A4[0] - 0.3" :height="A4[1] - 0.3" />
           <rect class="art" :x="A4[0] + scale.gap" :y="scale.vh - scale.ah" :width="scale.aw" :height="scale.ah" />
@@ -79,12 +127,12 @@ onMounted(() => {
         <figcaption><span>A4</span><span>{{ w.size![0] }} × {{ w.size![1] }} cm</span></figcaption>
       </figure>
 
-      <nav class="work-nav" aria-label="Opere">
-        <NuxtLink v-if="prev" :to="`/opere/${prev.slug}`" rel="prev">
-          <span>Precedente</span> {{ artworkTitle(prev) }}
+      <nav class="work-nav" :aria-label="t('work.nav')">
+        <NuxtLink v-if="prev" :to="localePath(`/opere/${prev.slug}`)" rel="prev">
+          <span>{{ t('work.prev') }}</span> {{ artworkTitle(prev, lang) }}
         </NuxtLink>
-        <NuxtLink v-if="next" :to="`/opere/${next.slug}`" rel="next" class="is-next">
-          <span>Successiva</span> {{ artworkTitle(next) }}
+        <NuxtLink v-if="next" :to="localePath(`/opere/${next.slug}`)" rel="next" class="is-next">
+          <span>{{ t('work.next') }}</span> {{ artworkTitle(next, lang) }}
         </NuxtLink>
       </nav>
     </div>

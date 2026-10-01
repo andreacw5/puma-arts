@@ -3,12 +3,19 @@ import { artworks, artworkAlt, artworkTitle, artworkCaption, path } from '~/data
 import { site } from '~/data/site'
 import { gsap, MOTION_OK, pasteIn, useMotion } from '~/utils/motion'
 
-useSeoMeta({
-  title: 'Pittura, scultura, disegno',
-  description: 'Dipinti, sculture e disegni di Emanuele Puma: dalle copie dei maestri all\'astratto.',
-})
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
 
 const cover = artworks.find(a => a.slug === 'papaveri')!
+
+useSeoMeta({
+  title: () => t('home.seo.title'),
+  description: () => t('home.seo.description'),
+  ogTitle: () => `${t('home.seo.title')} · Studio Arte Puma`,
+  ogDescription: () => t('home.seo.description'),
+  ogImageAlt: () => t('home.coverAlt', { title: artworkTitle(cover, locale.value), artist: site.artist }),
+})
+
 const total = artworks.length
 const pad = (i: number) => String(i).padStart(2, '0')
 
@@ -75,21 +82,21 @@ useMotion(root, (mm, el) => {
         sizes="(min-width: 900px) 62vw, 100vw"
         :width="cover.px[0]"
         :height="cover.px[1]"
-        :alt="`${artworkTitle(cover)}, dipinto di ${site.artist}`"
+        :alt="t('home.coverAlt', { title: artworkTitle(cover, locale), artist: site.artist })"
         fetchpriority="high"
       >
       <div class="bill-band">
-        <nav class="bill-nav" aria-label="Sezioni">
-          <a href="#percorso">Opere</a>
-          <NuxtLink to="/chi-sono">Chi sono</NuxtLink>
-          <a href="#contatti">Contatti</a>
+        <nav class="bill-nav" :aria-label="t('nav.label')">
+          <a href="#percorso">{{ t('nav.works') }}</a>
+          <NuxtLink :to="localePath('/chi-sono')">{{ t('nav.about') }}</NuxtLink>
+          <a href="#contatti">{{ t('nav.contact') }}</a>
         </nav>
         <h1 id="name" class="bill-name intro-heading">
           <span>Emanuele</span>
           <span>Puma</span>
         </h1>
-        <p class="bill-line">Pittura, scultura, disegno · {{ total }} opere</p>
-        <p class="bill-credit">In copertina: {{ artworkTitle(cover) }}</p>
+        <p class="bill-line">{{ t('home.line', { n: total }) }}</p>
+        <p class="bill-credit">{{ t('home.credit', { title: artworkTitle(cover, locale) }) }}</p>
       </div>
     </section>
 
@@ -104,34 +111,34 @@ useMotion(root, (mm, el) => {
       >
         <div class="stage-in torn">
           <header class="stage-head">
-            <h2 :id="`stage-${stage.id}`" class="stage-title">{{ stage.title }}</h2>
-            <p class="stage-line">{{ stage.line }}</p>
-            <p class="stage-count">{{ stage.works.length }} {{ stage.works.length === 1 ? 'opera' : 'opere' }}</p>
+            <h2 :id="`stage-${stage.id}`" class="stage-title">{{ t(`stages.${stage.id}.title`) }}</h2>
+            <p class="stage-line">{{ t(`stages.${stage.id}.line`) }}</p>
+            <p class="stage-count">{{ t('count', stage.works.length) }}</p>
             <p v-if="stage.works.length > 1" class="wall-nav">
-              <button type="button" disabled @click="slide($event, -1)">Indietro</button>
-              <button type="button" @click="slide($event, 1)">Avanti</button>
+              <button type="button" disabled @click="slide($event, -1)">{{ t('home.back') }}</button>
+              <button type="button" @click="slide($event, 1)">{{ t('home.forward') }}</button>
             </p>
           </header>
 
           <div class="wall">
             <ol class="sheets">
               <li v-for="w in stage.works" :key="w.slug" class="sheet">
-                <NuxtLink :to="`/opere/${w.slug}`" class="sheet-link">
+                <NuxtLink :to="localePath(`/opere/${w.slug}`)" class="sheet-link">
                   <img
                     :src="img(w.image, 800)"
                     :srcset="srcset(w.image, [400, 800, 1200])"
                     sizes="(min-width: 900px) 40vw, 80vw"
                     :width="w.px[0]"
                     :height="w.px[1]"
-                    :alt="artworkAlt(w)"
+                    :alt="artworkAlt(w, locale)"
                     :style="{ viewTransitionName: `art-${w.slug}` }"
                     loading="lazy"
                   >
                   <span class="sheet-meta">
                     <span class="sheet-n">{{ pad(w.n) }}/{{ total }}</span>
-                    <span class="sheet-title">{{ artworkTitle(w) }}</span>
-                    <span v-if="artworkCaption(w)" class="sheet-cap">{{ artworkCaption(w) }}</span>
-                    <span v-if="w.copyOf" class="sheet-copy">da {{ w.copyOf }}</span>
+                    <span class="sheet-title">{{ artworkTitle(w, locale) }}</span>
+                    <span v-if="artworkCaption(w, locale)" class="sheet-cap">{{ artworkCaption(w, locale) }}</span>
+                    <span v-if="w.copyOf" class="sheet-copy">{{ t('home.after', { author: w.copyOf }) }}</span>
                   </span>
                 </NuxtLink>
               </li>

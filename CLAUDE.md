@@ -31,10 +31,11 @@ scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts
 - **CSS scoped + `.js`**: scrivere `:global(.js .x)`, mai `:global(.js) .x`: Vue compila il secondo in `.js` e applica le regole a `<html>`.
 - **Direzione visiva**: "Manifesto d'affissione", contratto in `.impeccable/surfaces/app-pages-index-vue.md`. `PRODUCT.md` per il prodotto, `DESIGN.md` (+ `.impeccable/design.json`) per token e regole visive: leggerlo prima di toccare la UI.
 - **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`.
-- **Prerender**: Nitro parte da `/` e segue i link. Una pagina non linkata da nessuna parte va aggiunta a `nitro.prerender.routes`.
+- **Prerender**: tutto tranne `/`, che il server Node rende a ogni richiesta per il redirect di lingua. Nitro parte da `/en` e `/chi-sono` e segue i link; le opere italiane sono elencate da `artworks` in `nitro.prerender.routes`. Una pagina non linkata da nessuna parte va aggiunta lì.
 - **Opere**: titolo assente = "Senza titolo", sempre via `artworkTitle()`. Un'opera senza titolo deve avere `subject` (cosa raffigura): è il suo alt. Alt sempre via `artworkAlt()`. `slug` stabile: è l'URL di `/opere/<slug>`. Non scrivere tecnica o misure dentro `note`.
 - **Immagini**: URL FileHarbor → `img(url, w)` / `srcset(url, widths)`. Nuova immagine: metterla in `public/`, referenziarla da `app/data/`, poi `pnpm upload-images` (key in `.env`), poi cancellare il file locale.
-- **Lingua**: solo italiano.
+- **Lingua**: italiano su `/`, inglese su `/en` (`@nuxtjs/i18n`, `prefix_except_default`, autodetect dal browser solo su `/`, cookie `lang`). Ogni stringa UI in **entrambi** `i18n/locales/{it,en}.json`; testi delle opere nel campo `en` di `app/data/artworks.ts` (via `artworkTitle/Alt/Caption/Text(a, locale)`). Link interni con `useLocalePath()`.
+- **Sitemap e robots**: generati al build da `@nuxtjs/sitemap` (`zeroRuntime`) e `@nuxtjs/robots` dalle pagine prerenderizzate. Ingresso: `/sitemap_index.xml`.
 - **Contatti**: solo `mailto:`. Nessun form.
 
 ## Verifica

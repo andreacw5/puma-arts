@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "label": "Sections",
+    "works": "Works",
+    "about": "About",
+    "contact": "Contact",
+    "language": "Language"
+  },
+  "count": "{n} work | {n} works",
+  "stages": {
+    "figurativo": {
+      "title": "Painting",
+      "line": "Landscapes, portraits, sailing ships."
+    },
+    "astratto": {
+      "title": "Abstract",
+      "line": "Tempera and acrylic, with no subject left."
+    },
+    "disegno": {
+      "title": "Drawing",
+      "line": "From copies of the masters, in graphite, ink and pastel."
+    },
+    "scultura": {
+      "title": "Sculpture",
+      "line": "Terracotta."
+    }
+  },
+  "kind": {
+    "pittura": "Painting",
+    "disegno": "Drawing",
+    "scultura": "Sculpture"
+  },
+  "home": {
+    "seo": {
+      "title": "Emanuele Puma: painting, sculpture and drawing",
+      "description": "Paintings, terracotta sculptures and drawings by Italian artist Emanuele Puma: landscapes, portraits, sailing ships, abstract work and copies of the masters."
+    },
+    "coverAlt": "{title}, a painting by {artist}",
+    "line": "Painting, sculpture, drawing · {n} works",
+    "credit": "On the cover: {title}",
+    "back": "Back",
+    "forward": "Forward",
+    "after": "after {author}"
+  },
+  "about": {
+    "seo": {
+      "title": "About",
+      "description": "Emanuele Puma, painter and sculptor: an artist all his life, from his first copies of the masters to abstract work."
+    },
+    "portraitAlt": "{artist} in profile, at night, in front of lit fountains",
+    "title": "An artist all my life",
+    "line": "{artist}, painter and sculptor",
+    "job": "Painter and sculptor",
+    "quote": "Every work I make is a part of me.",
+    "story": [
+      "Ever since I was a child, from my very first school projects, I have been fascinated by the world of art. Painting, sculpture and every form of visual expression became my language, a passion that grew up with me and has never left me.",
+      "Every work holds my thoughts, my emotions and the way I see the world. With every brushstroke and every sculpted detail I try to pass on something unique and deep, something that can touch the soul of whoever is looking.",
+      "My works mirror what I have lived, a window opened onto my inner self and onto the way I perceive the world. Every creation, a painting or a sculpture, is an extension of myself, a piece of my soul taking shape and colour.",
+      "I love trying out different techniques and styles, always looking to grow and to express my emotions honestly."
+    ],
+    "path": "The path"
+  },
+  "work": {
+    "notFound": "Work not found",
+    "back": "Back to {stage}",
+    "copyOf": "Copy after {author}",
+    "n": "Work {n} of {total}",
+    "scale": "Size to scale: {w} by {h} centimetres, next to an A4 sheet",
+    "nav": "Works",
+    "prev": "Previous",
+    "next": "Next",
+    "untitled": "Untitled no. {n}",
+    "seoTitle": "{title}, {kind} by {artist}",
+    "from": "From the {stage} section of Studio Arte Puma. {line}"
+  },
+  "close": {
+    "say": "Write me."
+  }
+}
