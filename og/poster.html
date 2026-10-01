@@ -1,0 +1,43 @@
+<!doctype html><meta charset="utf-8">
+<!-- One template for every share image, laid out like the home bill: the work on the left, the ink band on the right.
+     render.sh fills it through the query string: img, ink, kicker, title (lines split by |), line, foot. -->
+<style>
+@font-face{font-family:Archivo;src:url(../node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:block}
+@font-face{font-family:Archivo;src:url(../node_modules/@fontsource-variable/archivo/files/archivo-latin-ext-wdth-normal.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:block;unicode-range:U+0100-02BA,U+1E00-1EFF}
+*{margin:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden;font-family:Archivo}
+body{display:grid;grid-template-columns:62fr 38fr;grid-template-rows:630px;background:var(--ink);color:var(--on)}
+.red{--ink:#e2401c;--on:#fff6ef}.green{--ink:#3f6b1f;--on:#f6f7ee}.blue{--ink:#1f3fbf;--on:#f3f5ff}
+.yellow{--ink:#f2b705;--on:#141414}.black{--ink:#141414;--on:#f4f3ef}
+.art{width:100%;height:630px;object-fit:cover;background:#f4f3ef}
+.contain{object-fit:contain;padding:36px}
+.band{display:flex;flex-direction:column;padding:44px 40px 40px;min-width:0}
+.k{font-weight:700;font-size:22px}
+h1{margin-top:auto;font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.82;letter-spacing:-.02em;font-size:120px}
+h1 span{display:block}
+.l{margin-top:22px;text-wrap:balance;font-weight:600;font-size:24px;line-height:1.25}
+.f{margin-top:22px;padding-top:16px;border-top:2px solid;font-weight:700;font-size:20px;display:flex;justify-content:space-between}
+</style>
+<img class="art" id="img" alt="">
+<div class="band">
+<p class="k" id="k"></p>
+<h1 id="t"></h1>
+<p class="l" id="l"></p>
+<p class="f"><span id="a"></span><span>studioartepuma.it</span></p>
+</div>
+<script>
+const q = new URLSearchParams(location.search)
+document.body.className = q.get('ink') || 'red'
+document.getElementById('img').src = q.get('img')
+if (q.get('fit') === 'contain') document.getElementById('img').classList.add('contain')
+document.getElementById('k').textContent = q.get('kicker') || ''
+document.getElementById('l').textContent = q.get('line') || ''
+document.getElementById('a').textContent = q.get('foot') || 'Emanuele Puma'
+const t = document.getElementById('t')
+for (const s of (q.get('title') || '').split('|')) t.append(Object.assign(document.createElement('span'), { textContent: s }))
+// Shrink until the title fits the band: long titles get smaller, never cut.
+document.fonts.ready.then(() => {
+  let size = 120
+  while (size > 48 && (t.scrollWidth > t.clientWidth || t.parentElement.scrollHeight > t.parentElement.clientHeight)) t.style.fontSize = `${size -= 4}px`
+})
+</script>

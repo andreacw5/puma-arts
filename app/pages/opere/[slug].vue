@@ -44,8 +44,8 @@ useSeoMeta({
   description,
   ogTitle: seoTitle,
   ogDescription: description,
-  ogImage: img(w.image, 1200),
-  ogImageAlt: artworkAlt(w, lang),
+  ogImage: `${siteUrl}/og/${lang}/opere/${w.slug}.jpg`,
+  ogImageAlt: t('work.ogAlt', { alt: artworkAlt(w, lang), artist: site.artist }),
 })
 
 useHead({

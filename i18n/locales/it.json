@@ -40,7 +40,8 @@
     "credit": "In copertina: {title}",
     "back": "Indietro",
     "forward": "Avanti",
-    "after": "da {author}"
+    "after": "da {author}",
+    "ogAlt": "Il nome {artist} accanto al dipinto {title}"
   },
   "about": {
     "seo": {
@@ -58,7 +59,8 @@
       "Le mie opere sono lo specchio del mio vissuto, una finestra aperta sulla mia interiorità e sul modo in cui percepisco il mondo. Ogni creazione, sia essa un dipinto o una scultura, è un'estensione di me stesso, un pezzo della mia anima che prende forma e colore.",
       "Adoro sperimentare tecniche e stili diversi, cercando sempre di evolvermi e di esprimere in modo autentico le mie emozioni."
     ],
-    "path": "Il percorso"
+    "path": "Il percorso",
+    "ogAlt": "{portrait}, accanto alla scritta «{title}»"
   },
   "work": {
     "notFound": "Opera non trovata",
@@ -71,7 +73,8 @@
     "next": "Successiva",
     "untitled": "Senza titolo n. {n}",
     "seoTitle": "{title}, {kind} di {artist}",
-    "from": "Dalla sezione {stage} di Studio Arte Puma. {line}"
+    "from": "Dalla sezione {stage} di Studio Arte Puma. {line}",
+    "ogAlt": "{alt}, di {artist}"
   },
   "close": {
     "say": "Scrivimi."

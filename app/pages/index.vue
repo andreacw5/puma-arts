@@ -13,7 +13,7 @@ useSeoMeta({
   description: () => t('home.seo.description'),
   ogTitle: () => `${t('home.seo.title')} · Studio Arte Puma`,
   ogDescription: () => t('home.seo.description'),
-  ogImageAlt: () => t('home.coverAlt', { title: artworkTitle(cover, locale.value), artist: site.artist }),
+  ogImageAlt: () => t('home.ogAlt', { title: artworkTitle(cover, locale.value), artist: site.artist }),
 })
 
 const total = artworks.length

@@ -40,7 +40,8 @@
     "credit": "On the cover: {title}",
     "back": "Back",
     "forward": "Forward",
-    "after": "after {author}"
+    "after": "after {author}",
+    "ogAlt": "The name {artist} beside the painting {title}"
   },
   "about": {
     "seo": {
@@ -58,7 +59,8 @@
       "My works mirror what I have lived, a window opened onto my inner self and onto the way I perceive the world. Every creation, a painting or a sculpture, is an extension of myself, a piece of my soul taking shape and colour.",
       "I love trying out different techniques and styles, always looking to grow and to express my emotions honestly."
     ],
-    "path": "The path"
+    "path": "The path",
+    "ogAlt": "{portrait}, beside the words “{title}”"
   },
   "work": {
     "notFound": "Work not found",
@@ -71,7 +73,8 @@
     "next": "Next",
     "untitled": "Untitled no. {n}",
     "seoTitle": "{title}, {kind} by {artist}",
-    "from": "From the {stage} section of Studio Arte Puma. {line}"
+    "from": "From the {stage} section of Studio Arte Puma. {line}",
+    "ogAlt": "{alt}, by {artist}"
   },
   "close": {
     "say": "Write me."

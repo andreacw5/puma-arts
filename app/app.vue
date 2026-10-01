@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { site as artist } from '~/data/site'
-
 const site = useRuntimeConfig().public.siteUrl
 const route = useRoute()
+const { locale } = useI18n()
 // hreflang alternates, og:locale and <html lang> for the current locale.
 const i18nHead = useLocaleHead({ seo: true })
 
@@ -22,7 +21,10 @@ useSeoMeta({
   ogType: 'website',
   ogSiteName: 'Studio Arte Puma',
   ogUrl: () => site + route.path,
-  ogImage: img(artist.cover, 1200),
+  // Share images: og/render.sh, one per page and language.
+  ogImage: () => `${site}/og/${locale.value}/home.jpg`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   twitterCard: 'summary_large_image',
 })
 </script>

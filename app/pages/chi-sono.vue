@@ -3,7 +3,7 @@ import { path } from '~/data/artworks'
 import { site } from '~/data/site'
 import { MOTION_OK, pasteIn, useMotion } from '~/utils/motion'
 
-const { t, tm } = useI18n()
+const { t, tm, locale } = useI18n()
 const localePath = useLocalePath()
 const siteUrl = useRuntimeConfig().public.siteUrl
 
@@ -12,8 +12,8 @@ useSeoMeta({
   description: () => t('about.seo.description'),
   ogTitle: () => `${site.artist} · ${t('about.seo.title')}`,
   ogDescription: () => t('about.seo.description'),
-  ogImage: img(site.portrait, 1200),
-  ogImageAlt: () => t('about.portraitAlt', { artist: site.artist }),
+  ogImage: () => `${siteUrl}/og/${locale.value}/chi-sono.jpg`,
+  ogImageAlt: () => t('about.ogAlt', { portrait: t('about.portraitAlt', { artist: site.artist }), title: t('about.title') }),
 })
 
 // Who the artist is, for search engines: the name, the craft, where else he shows his work.

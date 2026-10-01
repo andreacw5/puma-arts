@@ -19,6 +19,7 @@ app/
   plugins/motion.client.ts  # ScrollTrigger.refresh dopo ogni pagina
   utils/img.ts       # img/srcset per FileHarbor (?width=N)
   utils/motion.ts    # useMotion, revealLines, magnetic (copiato dal portfolio)
+og/                  # immagini di share: poster.html + render.sh → public/og/<locale>/…jpg (vedi og/README.md)
 scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts e li sostituisce
 ```
 
@@ -30,7 +31,7 @@ scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts
 - **Apertura delle pagine**: `pasteIn(img, heading)` di `utils/motion.ts` + classi `intro-art` / `intro-heading` (nascoste prima del paint in `main.css`). Ogni pagina con un manifesto in apertura la usa, così le aperture non divergono.
 - **CSS scoped + `.js`**: scrivere `:global(.js .x)`, mai `:global(.js) .x`: Vue compila il secondo in `.js` e applica le regole a `<html>`.
 - **Direzione visiva**: "Manifesto d'affissione", contratto in `.impeccable/surfaces/app-pages-index-vue.md`. `PRODUCT.md` per il prodotto, `DESIGN.md` (+ `.impeccable/design.json`) per token e regole visive: leggerlo prima di toccare la UI.
-- **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`.
+- **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`. og:image = `/og/<locale>/<pagina>.jpg` precomposte: dopo aver aggiunto o modificato un'opera, `og/render.sh`.
 - **Prerender**: tutto tranne `/`, che il server Node rende a ogni richiesta per il redirect di lingua. Nitro parte da `/en` e `/chi-sono` e segue i link; le opere italiane sono elencate da `artworks` in `nitro.prerender.routes`. Una pagina non linkata da nessuna parte va aggiunta lì.
 - **Opere**: titolo assente = "Senza titolo", sempre via `artworkTitle()`. Un'opera senza titolo deve avere `subject` (cosa raffigura): è il suo alt. Alt sempre via `artworkAlt()`. `slug` stabile: è l'URL di `/opere/<slug>`. Non scrivere tecnica o misure dentro `note`.
 - **Immagini**: URL FileHarbor → `img(url, w)` / `srcset(url, widths)`. Nuova immagine: metterla in `public/`, referenziarla da `app/data/`, poi `pnpm upload-images` (key in `.env`), poi cancellare il file locale.
