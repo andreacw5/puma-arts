@@ -241,6 +241,46 @@
       "caption": {
         "displayName": "Caption",
         "purpose": "Tecnica e misure sotto le opere, in ink-2."
+      },
+      "display-about": {
+        "displayName": "Display about",
+        "purpose": "Titolo di copertina in \"chi sono\"."
+      },
+      "strip": {
+        "displayName": "Strip",
+        "purpose": "Nomi di tappa nelle strisce del percorso."
+      },
+      "story": {
+        "displayName": "Story",
+        "purpose": "Testo lungo di \"chi sono\"."
+      },
+      "contact": {
+        "displayName": "Contact",
+        "purpose": "Email nella chiusura."
+      },
+      "section-label": {
+        "displayName": "Section label",
+        "purpose": "Etichetta sopra le strisce del percorso."
+      },
+      "line": {
+        "displayName": "Line",
+        "purpose": "Riga sotto il nome in copertina, didascalia nella fascia dell'opera."
+      },
+      "nav": {
+        "displayName": "Nav",
+        "purpose": "Navigazione stampata, conteggi nelle strisce."
+      },
+      "byline": {
+        "displayName": "Byline",
+        "purpose": "Powered by HeyAtom."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Crediti di copertina, didascalia della scala, etichette precedente/successiva."
+      },
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "Citazione dell'artista in \"chi sono\"."
       }
     },
     "shadows": [],

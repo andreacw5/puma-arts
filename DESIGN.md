@@ -33,18 +33,39 @@ typography:
     fontVariation: "'wdth' 62"
   title:
     fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "clamp(2.75rem, 12vw, 6rem)"
+    fontSize: "clamp(2rem, min(12vw, 14svh), 6rem)"
     fontWeight: 900
     lineHeight: 0.86
     letterSpacing: "-0.02em"
     fontVariation: "'wdth' 62"
   numeral:
     fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "clamp(2.5rem, 7vw, 4rem)"
+    fontSize: "clamp(2rem, min(7vw, 11svh), 4rem)"
     fontWeight: 900
     lineHeight: 1
     fontVariation: "'wdth' 62"
     fontFeature: "tnum"
+  display-about:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "clamp(3rem, min(17vw, 12svh), 10rem)"
+    fontWeight: 900
+    lineHeight: 0.84
+    letterSpacing: "-0.02em"
+    fontVariation: "'wdth' 62"
+  quote:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 7vw, 6rem)"
+    fontWeight: 900
+    lineHeight: 0.9
+    letterSpacing: "-0.02em"
+    fontVariation: "'wdth' 62"
+  strip:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "clamp(2.75rem, 11vw, 6.5rem)"
+    fontWeight: 900
+    lineHeight: 0.85
+    letterSpacing: "-0.02em"
+    fontVariation: "'wdth' 62"
   work-title:
     fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
     fontSize: "1.15rem"
@@ -68,6 +89,34 @@ typography:
     fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
     fontSize: "0.9rem"
     fontWeight: 400
+  story:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "clamp(1.05rem, 1.3vw, 1.2rem)"
+    fontWeight: 400
+  contact:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "clamp(1.1rem, 3vw, 1.6rem)"
+    fontWeight: 700
+  section-label:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "1.2rem"
+    fontWeight: 800
+  line:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "1.05rem"
+    fontWeight: 600
+  nav:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "0.95rem"
+    fontWeight: 700
+  byline:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 600
+  small:
+    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    fontSize: "0.8rem"
+    fontWeight: 600
 rounded:
   none: "0"
 spacing:
@@ -178,15 +227,25 @@ Carta e nero da stampa come base, tre inchiostri pieni da manifesto che non conv
 **Character:** un solo grottesco usato come materia: condensato al 62% e peso 900 per tutto ciò che è manifesto, larghezza normale per leggere. Numeri tabellari ovunque, perché conteggi e numerazione sono contenuto.
 
 ### Hierarchy
-- **Display** (900, `wdth` 62, clamp(3.5rem, 21vw, 9rem), 0.82, maiuscolo): il nome EMANUELE PUMA nella fascia di copertina, che riempie la riga. In layout affiancato sale a clamp(3.5rem, min(8.4vw, 26svh), 11rem). Variante "chi sono": clamp(3rem, min(17vw, 12svh), 10rem), interlinea 0.84, `text-wrap: balance`.
-- **Headline** (900, `wdth` 62, clamp(2.25rem, min(21cqi, 11svh), 11rem), 0.82, maiuscolo): titolo di tappa, dimensionato sulla propria colonna (container query) perché ASTRATTO, il più lungo, ci stia. Le stesse misure servono le grandi frasi di pagina (citazione "chi sono" clamp(2.5rem, 7vw, 6rem); "Scrivimi." clamp(4rem, 19vw, 11rem); nomi di tappa nel percorso clamp(2.75rem, 11vw, 6.5rem)).
-- **Title** (900, `wdth` 62, clamp(2.75rem, 12vw, 6rem), 0.86, maiuscolo, bilanciato): titolo dell'opera nella sua pagina.
-- **Numeral** (900, `wdth` 62, clamp(2.5rem, 7vw, 4rem), 1, non maiuscolo): la numerazione 06/26 nella pagina opera.
+- **Display** (900, `wdth` 62, clamp(3.5rem, 21vw, 9rem), 0.82, maiuscolo): il nome EMANUELE PUMA nella fascia di copertina, che riempie la riga. In layout affiancato sale a clamp(3.5rem, min(8.4vw, 26svh), 11rem).
+- **Headline** (900, `wdth` 62, clamp(2.25rem, min(21cqi, 11svh), 11rem), 0.82, maiuscolo): titolo di tappa, dimensionato sulla propria colonna (container query) perché ASTRATTO, il più lungo, ci stia. Le stesse misure servono le grandi frasi di pagina ("Scrivimi." clamp(4rem, 19vw, 11rem)).
+- **Display about** (900, `wdth` 62, clamp(3rem, min(17vw, 12svh),  10rem), 0.84, bilanciato): UN ARTISTA DA SEMPRE nella copertina di "chi sono"; in layout affiancato clamp(3rem, min(7.5vw, 20svh), 10rem).
+- **Title** (900, `wdth` 62, clamp(2rem, min(12vw, 14svh), 6rem), 0.86, maiuscolo, bilanciato): titolo dell'opera nella sua pagina; il minimo e il limite in svh lo tengono dentro uno schermo basso.
+- **Quote** (900, `wdth` 62, clamp(2.5rem, 7vw, 6rem), 0.9, max 14ch, bilanciato): "Ogni opera che creo è una parte di me." in "chi sono", ferma a sinistra su desktop mentre scorre il testo.
+- **Strip** (900, `wdth` 62, clamp(2.75rem, 11vw, 6.5rem), 0.85): nomi di tappa nelle strisce del percorso in "chi sono".
+- **Numeral** (900, `wdth` 62, clamp(2rem, min(7vw, 11svh), 4rem), 1, non maiuscolo): la numerazione 06/26 nella pagina opera.
 - **Work title** (800, 1.15rem, -0.01em): titolo dell'opera sotto il quadro, sul muro.
-- **Lead** (500, clamp(1rem, 1.6vw, 1.25rem), max 32ch): la riga che descrive una tappa. Il testo lungo di "chi sono" usa clamp(1.05rem, 1.3vw, 1.2rem) a 62ch.
+- **Lead** (500, clamp(1rem, 1.6vw, 1.25rem), max 32ch): la riga che descrive una tappa. 
+- **Story** (400, clamp(1.05rem, 1.3vw, 1.2rem), 62ch): il testo di "chi sono"; il primo paragrafo sale a 1.15em e 600.
 - **Body** (400, 1rem, 1.55, tabular-nums): testo corrente.
-- **Label** (700, 0.9 to 0.95rem): conteggi ("9 opere"), navigazione stampata, bottoni del muro.
+- **Contact** (700, clamp(1.1rem, 3vw, 1.6rem)): l'indirizzo email nella chiusura.
+- **Section label** (800, 1.2rem): "Il percorso" sopra le strisce.
+- **Line** (600, 1.05rem): la riga sotto il nome in copertina e la didascalia nella fascia dell'opera.
+- **Label** (700, 0.9rem): conteggi ("9 opere"), bottoni del muro.
+- **Nav** (700, 0.95rem): navigazione stampata nelle copertine, conteggi nelle strisce.
 - **Caption** (400, 0.9rem, `ink-2`): tecnica e misure sotto le opere; "da [maestro]" in corsivo per le copie.
+- **Byline** (600, 0.875rem): "Powered by HeyAtom".
+- **Small** (500 to 600, 0.8rem): "In copertina: …", didascalia della scala A4, etichette Precedente / Successiva.
 
 ### Named Rules
 **The Condensato Pieno Rule.** Ogni testo da manifesto è Archivo a `font-stretch: 62%`, peso 900, tracking -0.02em, interlinea tra 0.82 e 0.9. Il testo da leggere torna a larghezza normale. Nessun peso intermedio per i titoli, nessun tracking positivo.
