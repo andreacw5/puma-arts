@@ -39,7 +39,7 @@ Un artista vero con un percorso vero: dalla copia dei maestri (Cézanne, Picasso
 - Il sito si firma **Emanuele Puma**. "Studio Arte Puma" resta nel dominio, nel title e nell'og:site_name, non come marchio visivo.
 - **Voce: prima persona singolare**, quella dell'artista ("Ogni opera che creo è una parte di me"). Tono personale, sincero, senza gergo da critica d'arte.
 - Nessun logo esistente. Il vecchio look (Vuetify scuro con accento arancione e verde HeyAtom) è scartato: vale solo come anti-riferimento.
-- Footer: credito "Designed & Developed by Andrea Tombolato" con link a heyatom.dev, discreto.
+- Footer: byline "Powered by HeyAtom" (componente `PoweredBy`, segno con la mano verde `--heyatom`), link a heyatom.dev, discreto.
 
 ## Evidence on Hand
 

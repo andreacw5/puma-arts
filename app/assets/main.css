@@ -13,6 +13,8 @@
   --on-blue: #f3f5ff;
   --on-yellow: #141414;
   --on-black: #f4f3ef;
+  /* HeyAtom's own green: only for the platform mark in the close, never as a stage ink. */
+  --heyatom: #00a86b;
 
   --sans: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
 

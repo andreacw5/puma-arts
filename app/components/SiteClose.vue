@@ -8,7 +8,7 @@ import { site } from '~/data/site'
     <p class="close-say">Scrivimi.</p>
     <a class="close-mail" :href="`mailto:${site.email}`">{{ site.email }}</a>
     <a class="close-ig" :href="site.instagram.url">Instagram {{ site.instagram.handle }}</a>
-    <p class="close-credit">Sito di <a href="https://heyatom.dev">Andrea Tombolato</a></p>
+    <p class="close-credit"><PoweredBy /></p>
   </footer>
 </template>
 
@@ -34,5 +34,5 @@ import { site } from '~/data/site'
 }
 .close-mail { font-size: clamp(1.1rem, 3vw, 1.6rem); font-weight: 700; overflow-wrap: anywhere; }
 .close-ig { font-weight: 600; }
-.close-credit { margin: 3rem 0 0; font-size: 0.85rem; opacity: 0.75; }
+.close-credit { margin: 3rem 0 0; }
 </style>
