@@ -184,11 +184,10 @@ useMotion(root, (mm, el) => {
     grid-template-rows: none;
     grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
     height: 100svh;
-    min-height: 600px;
   }
   .bill-band { padding: 2rem var(--gutter) 2.5rem; }
   .bill-nav { justify-content: flex-start; }
-  .bill-name { font-size: clamp(5rem, 8.4vw, 11rem); }
+  .bill-name { font-size: clamp(3.5rem, min(8.4vw, 26svh), 11rem); }
 }
 
 /* ---------- Stages: one wall each ---------- */
@@ -203,8 +202,8 @@ useMotion(root, (mm, el) => {
 
 .stage-in {
   position: relative;
+  /* Exactly one screen: the wall is sticky, anything taller hides under the fold. */
   height: 100svh;
-  min-height: 560px;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   background: var(--paper);
@@ -220,6 +219,7 @@ useMotion(root, (mm, el) => {
 }
 
 .stage-head {
+  container-type: inline-size;
   background: var(--stage-ink);
   color: var(--on-stage);
   padding: 1.25rem var(--gutter) 1.1rem;
@@ -231,7 +231,8 @@ useMotion(root, (mm, el) => {
   font-stretch: 62%;
   font-weight: 900;
   text-transform: uppercase;
-  font-size: clamp(3.25rem, 16vw, 11rem);
+  /* Sized on its own column: ASTRATTO, the longest, must fit. */
+  font-size: clamp(2.25rem, min(21cqi, 11svh), 11rem);
   line-height: 0.82;
   letter-spacing: -0.02em;
 }
@@ -295,11 +296,12 @@ useMotion(root, (mm, el) => {
 .sheet-title { font-weight: 800; font-size: 1.15rem; color: var(--ink); letter-spacing: -0.01em; }
 .sheet-copy { font-style: italic; }
 
-@media (min-width: 900px) {
-  .stage-in { grid-template-rows: none; grid-template-columns: minmax(0, 30fr) minmax(0, 70fr); }
+/* Wide or short-and-landscape (a phone on its side): poster beside the wall, not above it. */
+@media (min-width: 900px), (orientation: landscape) and (max-height: 520px) {
+  .stage-in { grid-template-rows: minmax(0, 1fr); grid-template-columns: minmax(0, 30fr) minmax(0, 70fr); }
   .stage-head { align-content: end; padding: 2rem var(--gutter) 2.5rem; }
-  .stage-title { font-size: clamp(4rem, 8vw, 9rem); }
-  .sheets { padding-block: 4rem 2.5rem; }
+  .stage-title { font-size: clamp(2.25rem, min(21cqi, 17svh), 9rem); }
+  .sheets { padding-block: clamp(1.5rem, 7svh, 4rem) clamp(1rem, 4svh, 2.5rem); }
 }
 
 /* ---------- The walk (motion only) ---------- */
