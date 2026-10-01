@@ -1,0 +1,409 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-01T15:40:01+00:00",
+  "title": "Design System: Emanuele Puma",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Carta da affissione",
+        "canonical": "oklch(96.4% 0.005 95.1)",
+        "tonalRamp": [
+          "oklch(15% 0.005 95.1)",
+          "oklch(26% 0.005 95.1)",
+          "oklch(37% 0.005 95.1)",
+          "oklch(48% 0.005 95.1)",
+          "oklch(59% 0.005 95.1)",
+          "oklch(70% 0.005 95.1)",
+          "oklch(82% 0.005 95.1)",
+          "oklch(95% 0.005 95.1)"
+        ]
+      },
+      "paper-white": {
+        "role": "neutral",
+        "displayName": "Anima della carta",
+        "canonical": "oklch(99.1% 0.004 91.4)",
+        "tonalRamp": [
+          "oklch(15% 0.004 91.4)",
+          "oklch(26% 0.004 91.4)",
+          "oklch(37% 0.004 91.4)",
+          "oklch(48% 0.004 91.4)",
+          "oklch(59% 0.004 91.4)",
+          "oklch(70% 0.004 91.4)",
+          "oklch(82% 0.004 91.4)",
+          "oklch(95% 0.004 91.4)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Nero da stampa",
+        "canonical": "oklch(19.1% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(37% 0 0)",
+          "oklch(48% 0 0)",
+          "oklch(59% 0 0)",
+          "oklch(70% 0 0)",
+          "oklch(82% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Grigio inchiostro",
+        "canonical": "oklch(40.2% 0.009 88.7)",
+        "tonalRamp": [
+          "oklch(15% 0.009 88.7)",
+          "oklch(26% 0.009 88.7)",
+          "oklch(37% 0.009 88.7)",
+          "oklch(48% 0.009 88.7)",
+          "oklch(59% 0.009 88.7)",
+          "oklch(70% 0.009 88.7)",
+          "oklch(82% 0.009 88.7)",
+          "oklch(95% 0.009 88.7)"
+        ]
+      },
+      "red": {
+        "role": "primary",
+        "displayName": "Vermiglio da affissione",
+        "canonical": "oklch(60.7% 0.204 33.6)",
+        "tonalRamp": [
+          "oklch(15% 0.204 33.6)",
+          "oklch(26% 0.204 33.6)",
+          "oklch(37% 0.204 33.6)",
+          "oklch(48% 0.204 33.6)",
+          "oklch(59% 0.204 33.6)",
+          "oklch(70% 0.204 33.6)",
+          "oklch(82% 0.204 33.6)",
+          "oklch(95% 0.204 33.6)"
+        ]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Cobalto tipografico",
+        "canonical": "oklch(43.8% 0.202 266.3)",
+        "tonalRamp": [
+          "oklch(15% 0.202 266.3)",
+          "oklch(26% 0.202 266.3)",
+          "oklch(37% 0.202 266.3)",
+          "oklch(48% 0.202 266.3)",
+          "oklch(59% 0.202 266.3)",
+          "oklch(70% 0.202 266.3)",
+          "oklch(82% 0.202 266.3)",
+          "oklch(95% 0.202 266.3)"
+        ]
+      },
+      "yellow": {
+        "role": "tertiary",
+        "displayName": "Giallo cartellone",
+        "canonical": "oklch(81.1% 0.166 85)",
+        "tonalRamp": [
+          "oklch(15% 0.166 85)",
+          "oklch(26% 0.166 85)",
+          "oklch(37% 0.166 85)",
+          "oklch(48% 0.166 85)",
+          "oklch(59% 0.166 85)",
+          "oklch(70% 0.166 85)",
+          "oklch(82% 0.166 85)",
+          "oklch(95% 0.166 85)"
+        ]
+      },
+      "on-red": {
+        "role": "neutral",
+        "displayName": "Testo su vermiglio",
+        "canonical": "oklch(97.8% 0.013 60.6)",
+        "tonalRamp": [
+          "oklch(15% 0.013 60.6)",
+          "oklch(26% 0.013 60.6)",
+          "oklch(37% 0.013 60.6)",
+          "oklch(48% 0.013 60.6)",
+          "oklch(59% 0.013 60.6)",
+          "oklch(70% 0.013 60.6)",
+          "oklch(82% 0.013 60.6)",
+          "oklch(95% 0.013 60.6)"
+        ]
+      },
+      "on-blue": {
+        "role": "neutral",
+        "displayName": "Testo su cobalto",
+        "canonical": "oklch(97.2% 0.013 277.1)",
+        "tonalRamp": [
+          "oklch(15% 0.013 277.1)",
+          "oklch(26% 0.013 277.1)",
+          "oklch(37% 0.013 277.1)",
+          "oklch(48% 0.013 277.1)",
+          "oklch(59% 0.013 277.1)",
+          "oklch(70% 0.013 277.1)",
+          "oklch(82% 0.013 277.1)",
+          "oklch(95% 0.013 277.1)"
+        ]
+      },
+      "on-yellow": {
+        "role": "neutral",
+        "displayName": "Testo su giallo",
+        "canonical": "oklch(19.1% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(37% 0 0)",
+          "oklch(48% 0 0)",
+          "oklch(59% 0 0)",
+          "oklch(70% 0 0)",
+          "oklch(82% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "on-black": {
+        "role": "neutral",
+        "displayName": "Testo su nero",
+        "canonical": "oklch(96.4% 0.005 95.1)",
+        "tonalRamp": [
+          "oklch(15% 0.005 95.1)",
+          "oklch(26% 0.005 95.1)",
+          "oklch(37% 0.005 95.1)",
+          "oklch(48% 0.005 95.1)",
+          "oklch(59% 0.005 95.1)",
+          "oklch(70% 0.005 95.1)",
+          "oklch(82% 0.005 95.1)",
+          "oklch(95% 0.005 95.1)"
+        ]
+      },
+      "heyatom": {
+        "role": "neutral",
+        "displayName": "Verde HeyAtom (solo segno PoweredBy)",
+        "canonical": "oklch(64.5% 0.149 158.8)",
+        "tonalRamp": [
+          "oklch(15% 0.149 158.8)",
+          "oklch(26% 0.149 158.8)",
+          "oklch(37% 0.149 158.8)",
+          "oklch(48% 0.149 158.8)",
+          "oklch(59% 0.149 158.8)",
+          "oklch(70% 0.149 158.8)",
+          "oklch(82% 0.149 158.8)",
+          "oklch(95% 0.149 158.8)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Nome in copertina: condensato 62%, 900, maiuscolo, riempie la riga."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titolo di tappa, dimensionato sulla propria colonna; grandi frasi di pagina."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Titolo dell'opera nella sua pagina."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Numerazione NN/26 nella pagina opera."
+      },
+      "work-title": {
+        "displayName": "Work title",
+        "purpose": "Titolo dell'opera sotto il quadro, sul muro."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Riga descrittiva di una tappa."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Testo corrente, numeri tabellari."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Conteggi, navigazione stampata, bottoni del muro."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Tecnica e misure sotto le opere, in ink-2."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Unico easing di sistema: transizioni di stato e view transition."
+      },
+      {
+        "name": "view-transition",
+        "value": "0.55s var(--ease-out)",
+        "purpose": "L'opera cresce dal muro alla sua pagina (view-transition-name: art-<slug>)."
+      },
+      {
+        "name": "paste-in-art",
+        "value": "clip-path inset(0 0 100% 0) → inset(0% 0 0% 0), 1.4s expo.out",
+        "purpose": "Apertura di pagina: l'immagine si incolla dall'alto (.intro-art)."
+      },
+      {
+        "name": "paste-in-heading",
+        "value": "righe yPercent 115 → 0, 1.1s expo.out, stagger 0.08, delay 0.5s",
+        "purpose": "Apertura di pagina: il titolo sale riga per riga (.intro-heading)."
+      },
+      {
+        "name": "wall-walk",
+        "value": "ScrollTrigger scrub 0.6, ease none",
+        "purpose": "Lo scroll verticale percorre il muro in orizzontale; poi il foglio successivo scorre sopra."
+      },
+      {
+        "name": "path-flood",
+        "value": "background-color, color 0.45s var(--ease-out)",
+        "purpose": "Le strisce del percorso si inondano della loro tinta."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Nessuna animazione; muri come scroller nativi con Indietro/Avanti."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "side",
+        "value": "(min-width: 900px), (orientation: landscape) and (max-height: 520px)"
+      },
+      {
+        "name": "wide",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Bordo strappato",
+      "kind": "custom",
+      "refersTo": "stage-head",
+      "description": "Foglio incollato sopra il precedente: labbro di fibra bianca e strappo in --torn-ink.",
+      "html": "<div style=\"padding-top:48px;background:var(--paper)\"><div class=\"ds-torn\" style=\"--torn-ink:var(--red);background:var(--red);color:var(--on-red);padding:1.25rem 1.5rem;font-weight:700\">Foglio incollato</div></div>",
+      "css": ".ds-torn { position: relative; } .ds-torn::before, .ds-torn::after { content: ''; position: absolute; left: 0; right: 0; pointer-events: none; } .ds-torn::before { top: -36px; height: 37px; background: var(--paper-white); mask: url('/edge.svg') repeat-x calc(var(--torn-x, 0px) + 41px) 0 / 760px 100%; } .ds-torn::after { top: -30px; height: 31px; background: var(--torn-ink, var(--ink)); mask: url('/edge.svg') repeat-x var(--torn-x, 0px) 0 / 900px 100%; }"
+    },
+    {
+      "name": "Testata di tappa",
+      "kind": "custom",
+      "refersTo": "stage-head",
+      "description": "Testata in tinta di tappa: titolo condensato, riga, conteggio.",
+      "html": "<header class=\"ds-stage-head\"><h2 class=\"ds-stage-title\">Astratto</h2><p class=\"ds-stage-line\">Tempera e acrilico, senza più un soggetto.</p><p class=\"ds-stage-count\">9 opere</p></header>",
+      "css": ".ds-stage-head { --stage-ink: var(--blue); --on-stage: var(--on-blue); background: var(--stage-ink); color: var(--on-stage); padding: 1.25rem var(--gutter) 1.1rem; display: grid; gap: 0.35rem; font-family: var(--sans); } .ds-stage-title { margin: 0; font-family: var(--sans); font-stretch: 62%; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; font-size: 4rem; line-height: 0.82; } .ds-stage-line { margin: 0; max-width: 32ch; font-size: 1.1rem; font-weight: 500; } .ds-stage-count { margin: 0; font-weight: 700; font-size: 0.9rem; }"
+    },
+    {
+      "name": "Foglio sul muro",
+      "kind": "card",
+      "refersTo": "sheet-caption",
+      "description": "Opera intera senza cornice né ombra, con numero, titolo e didascalia.",
+      "html": "<a class=\"ds-sheet\" href=\"#\"><span class=\"ds-sheet-img\" role=\"img\" aria-label=\"Opera\"></span><span class=\"ds-sheet-n\">06/26</span><span class=\"ds-sheet-title\">Natura morta con cipolle</span><span class=\"ds-sheet-cap\">Pastello su cartoncino, 33 × 48 cm</span><span class=\"ds-sheet-cap ds-copy\">da Paul Cézanne</span></a>",
+      "css": ".ds-sheet { display: inline-grid; gap: 0.05rem; text-decoration: none; font-family: var(--sans); font-size: 0.9rem; color: var(--ink-2); background: var(--paper); padding: 1.5rem; } .ds-sheet-img { display: block; width: 240px; height: 180px; margin-bottom: 0.65rem; background: var(--ink-2); } .ds-sheet-n { font-weight: 700; color: var(--ink); } .ds-sheet-title { font-weight: 800; font-size: 1.15rem; color: var(--ink); letter-spacing: -0.01em; } .ds-copy { font-style: italic; } .ds-sheet:hover .ds-sheet-title, .ds-sheet:focus-visible .ds-sheet-title { text-decoration: underline; text-decoration-thickness: 2px; } .ds-sheet:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Bottone del muro",
+      "kind": "button",
+      "refersTo": "wall-nav-button",
+      "description": "Indietro/Avanti, solo con movimento ridotto; si inverte in hover.",
+      "html": "<div class=\"ds-wall-nav\"><button type=\"button\">Indietro</button><button type=\"button\">Avanti</button></div>",
+      "css": ".ds-wall-nav { --stage-ink: var(--red); --on-stage: var(--on-red); background: var(--stage-ink); color: var(--on-stage); padding: 1rem; display: flex; gap: 0.5rem; } .ds-wall-nav button { font-family: var(--sans); font-weight: 700; font-size: 0.9rem; color: inherit; background: none; border: 2px solid currentColor; border-radius: 0; padding: 0.35rem 0.8rem; cursor: pointer; } .ds-wall-nav button:hover { background: var(--on-stage); color: var(--stage-ink); } .ds-wall-nav button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigazione stampata",
+      "kind": "nav",
+      "refersTo": "bill-band",
+      "description": "Link in grassetto stampati nella fascia di copertina.",
+      "html": "<nav class=\"ds-bill-nav\"><a href=\"#\">Opere</a><a href=\"#\">Chi sono</a><a href=\"#\">Contatti</a></nav>",
+      "css": ".ds-bill-nav { background: var(--red); color: var(--on-red); padding: 0.9rem var(--gutter); display: flex; gap: 1.25rem; font-family: var(--sans); font-weight: 700; font-size: 0.95rem; } .ds-bill-nav a { color: inherit; text-decoration: none; text-underline-offset: 0.2em; } .ds-bill-nav a:hover { text-decoration: underline; } .ds-bill-nav a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Striscia del percorso",
+      "kind": "custom",
+      "refersTo": "path-strip",
+      "description": "Riga di carta che si inonda della propria tinta in hover o focus.",
+      "html": "<a class=\"ds-path\" href=\"#\"><span class=\"ds-path-name\">Scultura</span><span>La terracotta.</span><span class=\"ds-path-count\">1 opera</span></a>",
+      "css": ".ds-path { --stage-ink: var(--yellow); --on-stage: var(--on-yellow); display: grid; gap: 0.35rem; padding: 1.5rem var(--gutter) 1.75rem; border-block: 2px solid var(--ink); background: var(--paper); color: var(--ink); text-decoration: none; font-family: var(--sans); font-weight: 500; transition: background-color 0.45s var(--ease-out), color 0.45s var(--ease-out); } .ds-path:hover, .ds-path:focus-visible { background: var(--stage-ink); color: var(--on-stage); } .ds-path-name { font-family: var(--sans); font-stretch: 62%; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; font-size: 3.5rem; line-height: 0.85; } .ds-path-count { font-weight: 700; font-size: 0.95rem; }"
+    },
+    {
+      "name": "Chiusura",
+      "kind": "custom",
+      "refersTo": "site-close",
+      "description": "Foglio nero strappato con Scrivimi, mail e Instagram.",
+      "html": "<div style=\"padding-top:48px;background:var(--paper)\"><footer class=\"ds-close ds-torn\" style=\"--torn-x:300px\"><p class=\"ds-close-say\">Scrivimi.</p><a class=\"ds-close-mail\" href=\"#\">nome@esempio.it</a><a href=\"#\">Instagram @puma_art_lab</a></footer></div>",
+      "css": ".ds-torn { position: relative; } .ds-torn::before, .ds-torn::after { content: ''; position: absolute; left: 0; right: 0; pointer-events: none; } .ds-torn::before { top: -36px; height: 37px; background: var(--paper-white); mask: url('/edge.svg') repeat-x calc(var(--torn-x, 0px) + 41px) 0 / 760px 100%; } .ds-torn::after { top: -30px; height: 31px; background: var(--torn-ink, var(--ink)); mask: url('/edge.svg') repeat-x var(--torn-x, 0px) 0 / 900px 100%; } .ds-close { background: var(--ink); color: var(--on-black); padding: 4rem var(--gutter) 2rem; display: grid; gap: 0.75rem; justify-items: start; font-family: var(--sans); } .ds-close a { color: inherit; font-weight: 600; } .ds-close-say { margin: 0; font-family: var(--sans); font-stretch: 62%; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; font-size: 5rem; line-height: 0.85; } .ds-close-mail { font-size: 1.4rem; font-weight: 700 !important; } .ds-close a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Il muro d'affissione",
+    "overview": "**Creative North Star: \"Il muro d'affissione\"**\n\nOgni tappa del percorso è un manifesto di mostra incollato su un muro: l'opera stampata piatta sulla carta, il testo in inchiostro pieno, una sola tinta per foglio. Passare da una tappa all'altra significa incollare un manifesto nuovo sopra il precedente, con il bordo superiore strappato che lascia vedere l'anima bianca della carta. Il mondo è chiaro e tipografico: carta da affissione fredda, nero da stampa, tre tinte piatte sature (vermiglio, cobalto, giallo) e un grottesco variabile spinto al condensato più pesante.\n\nLa densità è bassa e frontale: un solo manifesto per schermo, un'opera alla volta in piena vista, nessuna griglia di miniature. L'interfaccia è stampata dentro i manifesti (navigazione nella fascia, conteggi, numerazione 07/26), mai sovrapposta all'opera. Le foto delle opere sono scatti amatoriali e restano quello che sono: mai ritagliate, mai incorniciate, mai ombreggiate.\n\nRifiuti confermati dal brief: la parete bianca da galleria con griglia masonry, il nero da galleria di lusso, il vecchio look scuro con accento arancione e verde.",
+    "keyCharacteristics": [
+      "Una tinta piena per schermo, assegnata alla tappa.",
+      "Display Archivo a larghezza 62%, peso 900, maiuscolo, interlinea sotto 0,9.",
+      "Bordo strappato come unica giunzione tra fogli.",
+      "Nessun raggio, nessuna card, nessuna ombra.",
+      "Il muro è alto esattamente uno schermo; lo scroll verticale lo percorre in orizzontale."
+    ],
+    "rules": [
+      {
+        "name": "The Una Tinta per Schermo Rule",
+        "body": "Su ogni schermo c'è una sola tinta piena di tappa. Due tinte convivono solo durante l'incollaggio, mentre il manifesto nuovo scorre sopra il precedente. Nella pagina \"chi sono\" le strisce del percorso restano carta e si inondano della loro tinta una alla volta, solo in hover o focus.",
+        "section": "colors"
+      },
+      {
+        "name": "The Inchiostri Globali Rule",
+        "body": "Le tinte di tappa si applicano solo con le classi globali `.ink-black`, `.ink-red`, `.ink-blue`, `.ink-yellow`, che impostano la coppia `--stage-ink` / `--on-stage`. I componenti leggono quella coppia; non ridefiniscono mai `--stage-ink` o `--on-stage` in CSS scoped. La mappa tappa → tinta vive in `app/data/artworks.ts` (`stages[].ink`): Disegno nero, Pittura vermiglio, Astratto cobalto, Scultura giallo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Verde Non è un Inchiostro Rule",
+        "body": "`heyatom` appartiene al segno della piattaforma, non al mondo: non è mai fondo, tinta di tappa, link o accento.",
+        "section": "colors"
+      },
+      {
+        "name": "The Condensato Pieno Rule",
+        "body": "Ogni testo da manifesto è Archivo a `font-stretch: 62%`, peso 900, tracking -0.02em, interlinea tra 0.82 e 0.9. Il testo da leggere torna a larghezza normale. Nessun peso intermedio per i titoli, nessun tracking positivo.",
+        "section": "typography"
+      },
+      {
+        "name": "The Numerazione Onesta Rule",
+        "body": "I numeri sono conteggi veri: \"NN/26\" per l'opera (posizione nel percorso, zero iniziale), \"N opere\" per la tappa, \"26 opere\" in copertina. Calcolati dai dati, mai scritti a mano.",
+        "section": "typography"
+      },
+      {
+        "name": "The Muro di Uno Schermo Rule",
+        "body": "Ogni muro è alto esattamente `100svh`. Con il movimento attivo la tappa è sticky, lo scroll verticale fa scorrere la fila delle opere in orizzontale (GSAP ScrollTrigger, `scrub: 0.6`), poi la tappa resta ferma per un altro schermo mentre la successiva le scorre sopra (`margin-top: -100svh`). L'ultima tappa non ha nulla sopra: la chiusura segue.",
+        "section": "layout"
+      },
+      {
+        "name": "The Muro Senza Movimento Rule",
+        "body": "Con `prefers-reduced-motion: reduce` il muro diventa uno scroller orizzontale nativo (scroll-snap al centro, scrollbar sottile visibile) e la testata mostra due bottoni, Indietro e Avanti, che spostano il muro dell'80% della sua larghezza. Quando il percorso a scorrimento è attivo i bottoni spariscono.",
+        "section": "layout"
+      },
+      {
+        "name": "The Il Box è il Quadro Rule",
+        "body": "Le opere non vengono mai ritagliate e mai ombreggiate: l'immagine mantiene le proporzioni della foto (`width/height: auto` entro i massimi), senza cornice, passe-partout, bordo o ombra. Solo le foto di copertina della pagina (copertina e ritratto) riempiono il loro riquadro con `object-fit: cover`.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Strappo è l'Unica Giunzione Rule",
+        "body": "Il passaggio tra un foglio e il successivo è sempre il bordo strappato `.torn`, mai una linea, un'ombra o una sfumatura.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do applicare la tinta di una superficie solo con `.ink-black` / `.ink-red` / `.ink-blue` / `.ink-yellow` e leggere `--stage-ink` / `--on-stage`.",
+      "Do tenere una sola tinta piena per schermo; due solo durante l'incollaggio.",
+      "Do unire un foglio al precedente con `.torn`, impostando `--torn-ink` sul colore del foglio.",
+      "Do mostrare le opere intere: proporzioni della foto, nessun ritaglio, nessuna ombra, nessuna cornice.",
+      "Do aprire ogni pagina-manifesto con `pasteIn` e le classi `.intro-art` / `.intro-heading`.",
+      "Do tenere ogni muro alto esattamente `100svh` e passare al layout affiancato a `(min-width: 900px), (orientation: landscape) and (max-height: 520px)`.",
+      "Do dare a ogni opera senza titolo un `subject`: è il suo testo alternativo (\"Senza titolo: …\").",
+      "Do fornire con il movimento ridotto un'alternativa manovrabile (scroller nativo con Indietro/Avanti) a ogni scorrimento guidato."
+    ],
+    "donts": [
+      "Don't ridefinire `--stage-ink` o `--on-stage` in CSS scoped.",
+      "Don't usare `heyatom` fuori dal segno di PoweredBy.",
+      "Don't arrotondare angoli, usare card o ombre: qui la profondità è carta su carta.",
+      "Don't ritagliare un'opera sul muro o nella sua pagina con `object-fit: cover`.",
+      "Don't mettere due tinte di tappa piene sullo stesso schermo a riposo.",
+      "Don't scrivere titoli da manifesto a larghezza normale o sotto il peso 900."
+    ]
+  }
+}

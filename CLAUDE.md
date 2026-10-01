@@ -9,7 +9,7 @@ Niente Vuetify, niente Pinia, niente DB. I contenuti sono file TS in `app/data/`
 ```
 app/
   app.vue            # head globale: canonical, og default, classe `js` per il motion
-  assets/main.css    # token e stili base. Palette e font provvisori finché manca DESIGN.md
+  assets/main.css    # token e stili condivisi (inchiostri, .torn, intro); fonte dei valori in DESIGN.md
   data/artworks.ts   # opere: fonte unica, ordine = più recenti prima
   data/site.ts       # nome, contatti, ritratto, immagine di share
   pages/index.vue    # manifesto iniziale + percorso a pareti (scroll orizzontale guidato da GSAP)
@@ -29,7 +29,7 @@ scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts
 - **Motion**: sempre via `useMotion(root, (mm, el) => …)`, animazioni dentro `mm.add(MOTION_OK, …)`. Senza motion le pareti sono normali scroller orizzontali.
 - **Apertura delle pagine**: `pasteIn(img, heading)` di `utils/motion.ts` + classi `intro-art` / `intro-heading` (nascoste prima del paint in `main.css`). Ogni pagina con un manifesto in apertura la usa, così le aperture non divergono.
 - **CSS scoped + `.js`**: scrivere `:global(.js .x)`, mai `:global(.js) .x`: Vue compila il secondo in `.js` e applica le regole a `<html>`.
-- **Direzione visiva**: "Manifesto d'affissione", contratto in `.impeccable/surfaces/app-pages-index-vue.md`. `PRODUCT.md` per il prodotto; `DESIGN.md` arriva a build finita.
+- **Direzione visiva**: "Manifesto d'affissione", contratto in `.impeccable/surfaces/app-pages-index-vue.md`. `PRODUCT.md` per il prodotto, `DESIGN.md` (+ `.impeccable/design.json`) per token e regole visive: leggerlo prima di toccare la UI.
 - **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`.
 - **Prerender**: Nitro parte da `/` e segue i link. Una pagina non linkata da nessuna parte va aggiunta a `nitro.prerender.routes`.
 - **Opere**: titolo assente = "Senza titolo", sempre via `artworkTitle()`. Un'opera senza titolo deve avere `subject` (cosa raffigura): è il suo alt. Alt sempre via `artworkAlt()`. `slug` stabile: è l'URL di `/opere/<slug>`. Non scrivere tecnica o misure dentro `note`.
