@@ -6,7 +6,7 @@ colors:
   paper-white: "#fdfcf9"
   ink: "#141414"
   ink-2: "#4a4843"
-  red: "#e2401c"
+  red: "#cc3517"
   green: "#3f6b1f"
   blue: "#1f3fbf"
   yellow: "#f2b705"
@@ -278,7 +278,7 @@ Il sistema è piatto: la profondità è solo carta incollata su carta. Un foglio
 
 ## Shapes
 
-Nessun raggio: ogni superficie è un foglio rettangolare a spigolo vivo (`rounded.none`). Le uniche forme irregolari sono gli strappi, generati da `public/edge.svg` (passeggiata casuale con seme, 1200×40) usato come maschera ripetuta in orizzontale. I filetti sono pieni da 2px in `ink` o `currentColor`; il focus è un outline da 3px in `currentColor` con 3px di offset.
+Nessun raggio: ogni superficie è un foglio rettangolare a spigolo vivo (`rounded.none`). Le uniche forme irregolari sono gli strappi, generati da `app/assets/edge.svg` (passeggiata casuale con seme, 1200×40) usato come maschera ripetuta in orizzontale. I filetti sono pieni da 2px in `ink` o `currentColor`; il focus è un outline da 3px in `currentColor` con 3px di offset.
 
 ## Components
 

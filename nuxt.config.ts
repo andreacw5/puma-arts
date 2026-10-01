@@ -31,7 +31,8 @@ export default defineNuxtConfig({
   // before any HTML is sent. Prerendered, the redirect would happen during hydration.
   routeRules: { '/': { prerender: false } },
   // Italian artwork pages are linked only from /, so they are listed here; /en links its own.
-  nitro: { prerender: { crawlLinks: true, routes: ['/en', '/chi-sono', '/robots.txt', ...artworks.map(a => `/opere/${a.slug}`)] } },
+  // Static assets ship with .br/.gz next to them, so the Node server never serves them uncompressed.
+  nitro: { compressPublicAssets: true, prerender: { crawlLinks: true, routes: ['/en', '/chi-sono', '/robots.txt', ...artworks.map(a => `/opere/${a.slug}`)] } },
   app: {
     head: {
       titleTemplate: '%s · Studio Arte Puma',

@@ -16,7 +16,7 @@ Vincoli utente: primo schermo = un'opera a tutto schermo; esplorazione in tappe;
 
 THESIS: Ogni tappa del percorso è un manifesto di mostra incollato a un muro d'affissione: l'opera stampata a piena pagina, il testo in inchiostro pieno. Rifiuta la parete bianca con griglia masonry e il nero da galleria.
 
-OWN-WORLD: Carta da affissione bianca fredda (#f4f3ef), nero tipografico (#141414), vermiglio #e2401c solo per la copertina, una sola tinta piena per tappa (verde vescica #3f6b1f pittura, cobalto #1f3fbf astratto, nero disegno, giallo #f2b705 scultura), mai due a schermo. Grottesco variabile Archivo, dal condensato pesante per il display al normale per il testo. Bordi di carta, sovrapposizioni di fogli incollati, numerazione 07/26. Nessun raggio, nessuna card, nessuna ombra morbida.
+OWN-WORLD: Carta da affissione bianca fredda (#f4f3ef), nero tipografico (#141414), vermiglio #cc3517 solo per la copertina, una sola tinta piena per tappa (verde vescica #3f6b1f pittura, cobalto #1f3fbf astratto, nero disegno, giallo #f2b705 scultura), mai due a schermo. Grottesco variabile Archivo, dal condensato pesante per il display al normale per il testo. Bordi di carta, sovrapposizioni di fogli incollati, numerazione 07/26. Nessun raggio, nessuna card, nessuna ombra morbida.
 
 STORY: Il visitatore vede subito un quadro grande, capisce che è di Emanuele Puma, scorre tappa per tappa vedendo crescere il percorso, apre un'opera per misure in scala e dettagli, esce verso Instagram o la mail.
 

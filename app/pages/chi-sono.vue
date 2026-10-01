@@ -35,13 +35,13 @@ useHead(() => ({
 
 const root = ref<HTMLElement>()
 useMotion(root, (mm, el) => {
-  mm.add(MOTION_OK, () => { pasteIn(el.querySelector('.bill-art')!, el.querySelector('.bill-title')!) })
+  mm.add(MOTION_OK, () => { pasteIn(el.querySelector('.bill')!, el.querySelector('.bill-title')!) })
 })
 </script>
 
 <template>
   <div ref="root">
-    <section class="bill" aria-labelledby="title">
+    <section class="bill intro-poster" aria-labelledby="title">
       <img
         class="bill-art intro-art"
         :src="img(site.portrait, 1200)"

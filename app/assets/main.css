@@ -5,7 +5,7 @@
   --ink-2: #4a4843;
   /* Stage inks: never two on screen at once. */
   /* Red belongs to the cover bill; painting gets sap green so the first wall breaks from it. */
-  --red: #e2401c;
+  --red: #cc3517;
   --green: #3f6b1f;
   --blue: #1f3fbf;
   --yellow: #f2b705;
@@ -59,9 +59,30 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 
 :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
 
-/* Page openings (pasteIn in utils/motion.ts): hidden before first paint only when motion will reveal them. */
-.js .intro-art { clip-path: inset(0 0 100% 0); }
+/* Page openings (pasteIn in utils/motion.ts), only when motion will reveal them.
+   The image is never hidden (it is the page's LCP): a curtain in the poster's own colour sits over its
+   grid cell and pasteIn slides it off by driving --paste from 0% to 100%. */
+.intro-art { grid-area: 1 / 1; }
+.js .intro-poster { --paste: 0%; }
+.js .intro-poster::before {
+  content: '';
+  grid-area: 1 / 1;
+  z-index: 1;
+  background: inherit;
+  clip-path: inset(var(--paste) 0 0 0);
+  pointer-events: none;
+}
 .js .intro-heading { visibility: hidden; }
+
+/* Read by screen readers only. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
 /* Stage inks: a stage's poster colour and the text printed on it. */
 .ink-black { --stage-ink: var(--ink); --on-stage: var(--on-black); }
@@ -85,13 +106,13 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
   top: -36px;
   height: 37px;
   background: var(--paper-white);
-  mask: url('/edge.svg') repeat-x calc(var(--torn-x, 0px) + 41px) 0 / 760px 100%;
+  mask: url('./edge.svg') repeat-x calc(var(--torn-x, 0px) + 41px) 0 / 760px 100%;
 }
 .torn::after {
   top: -30px;
   height: 31px;
   background: var(--torn-ink, var(--ink));
-  mask: url('/edge.svg') repeat-x var(--torn-x, 0px) 0 / 900px 100%;
+  mask: url('./edge.svg') repeat-x var(--torn-x, 0px) 0 / 900px 100%;
 }
 
 ::view-transition-group(*) { animation-duration: 0.55s; animation-timing-function: var(--ease-out); }

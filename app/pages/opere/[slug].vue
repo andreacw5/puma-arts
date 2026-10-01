@@ -101,6 +101,7 @@ onMounted(() => {
         :height="w.px[1]"
         :alt="artworkAlt(w, lang)"
         :style="{ viewTransitionName: `art-${w.slug}` }"
+        fetchpriority="high"
       >
     </figure>
 
@@ -112,7 +113,7 @@ onMounted(() => {
         <p v-if="caption" class="work-cap">{{ caption }}</p>
         <p v-if="w.copyOf" class="work-copy">{{ t('work.copyOf', { author: w.copyOf }) }}</p>
         <p v-if="text.note" class="work-note">{{ text.note }}</p>
-        <p class="work-n" :aria-label="t('work.n', { n: w.n, total })">{{ pad(w.n) }}/{{ total }}</p>
+        <p class="work-n"><span aria-hidden="true">{{ pad(w.n) }}/{{ total }}</span><span class="sr-only">{{ t('work.n', { n: w.n, total }) }}</span></p>
       </div>
 
       <figure v-if="scale" class="work-scale">

@@ -78,5 +78,10 @@
   },
   "close": {
     "say": "Write me."
+  },
+  "error": {
+    "title": "Page not found",
+    "generic": "Something went wrong",
+    "home": "Back to the works"
   }
 }

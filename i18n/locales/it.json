@@ -78,5 +78,10 @@
   },
   "close": {
     "say": "Scrivimi."
+  },
+  "error": {
+    "title": "Pagina non trovata",
+    "generic": "Qualcosa è andato storto",
+    "home": "Torna alle opere"
   }
 }

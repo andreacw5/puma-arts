@@ -11,20 +11,26 @@ export const MOTION_OK = '(prefers-reduced-motion: no-preference)'
 /** Runs `setup` after mount inside a gsap.matchMedia scoped to `root`; reverts everything on unmount. */
 export function useMotion(root: Ref<HTMLElement | undefined>, setup: (mm: gsap.MatchMedia, el: HTMLElement) => void) {
   let mm: gsap.MatchMedia | undefined
+  // The walk is measured from the layout; re-measure once the page has fully arrived.
+  const offFinish = useNuxtApp().hook('page:finish', () => ScrollTrigger.refresh())
   onMounted(() => {
     if (!root.value) return
     mm = gsap.matchMedia(root.value)
     setup(mm, root.value)
   })
-  onBeforeUnmount(() => mm?.revert())
+  onBeforeUnmount(() => {
+    offFinish()
+    mm?.revert()
+  })
 }
 
 /**
  * Opening of a page poster: the image is pasted on from the top, then the heading rises line by line.
- * Pair with the `intro-art` / `intro-heading` classes, which main.css hides before first paint.
+ * `poster` carries the `intro-poster` class (main.css draws its curtain over the `intro-art` image and
+ * hides the `intro-heading` before first paint); --paste slides the curtain off.
  */
-export function pasteIn(art: Element, heading: Element) {
-  gsap.to(art, { clipPath: 'inset(0% 0 0% 0)', duration: 1.4, ease: 'expo.out' })
+export function pasteIn(poster: Element, heading: Element) {
+  gsap.fromTo(poster, { '--paste': '0%' }, { '--paste': '100%', duration: 1.4, ease: 'expo.out' })
   return SplitText.create(heading, {
     type: 'lines',
     mask: 'lines',

@@ -16,9 +16,9 @@ app/
   pages/opere/[slug].vue  # opera singola: view transition dalla parete, righello in scala con A4
   pages/chi-sono.vue # ritratto + testo dell'artista + il percorso come strisce che si colorano al passaggio
   components/SiteClose.vue  # chiusura "Scrivimi." condivisa da tutte le pagine
-  plugins/motion.client.ts  # ScrollTrigger.refresh dopo ogni pagina
+  error.vue          # 404 e errori: titolo, link alla home, stessa testata
   utils/img.ts       # img/srcset per FileHarbor (?width=N)
-  utils/motion.ts    # useMotion, revealLines, magnetic (copiato dal portfolio)
+  utils/motion.ts    # useMotion (+ ScrollTrigger.refresh a page:finish), pasteIn
 og/                  # immagini di share: poster.html + render.sh → public/og/<locale>/…jpg (vedi og/README.md)
 scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts e li sostituisce
 ```
@@ -28,7 +28,7 @@ scripts/upload-images.mjs  # carica su FileHarbor i path locali in app/data/*.ts
 - **Stile**: CSS scoped nei componenti + token da `main.css`. Mai colori hardcoded. Inchiostri delle tappe (`.ink-*`) e bordo strappato (`.torn`, `--torn-ink`) sono globali in `main.css`: non ridefinire `--stage-ink` in CSS scoped, vince sulla classe globale.
 - **Un inchiostro per schermo**: mai due tinte piene visibili insieme; dove una lista mostra più tappe, la tinta arriva solo su hover/focus.
 - **Motion**: sempre via `useMotion(root, (mm, el) => …)`, animazioni dentro `mm.add(MOTION_OK, …)`. Senza motion le pareti sono normali scroller orizzontali.
-- **Apertura delle pagine**: `pasteIn(img, heading)` di `utils/motion.ts` + classi `intro-art` / `intro-heading` (nascoste prima del paint in `main.css`). Ogni pagina con un manifesto in apertura la usa, così le aperture non divergono.
+- **Apertura delle pagine**: `pasteIn(poster, heading)` di `utils/motion.ts` + classi `intro-poster` (sulla sezione), `intro-art` / `intro-heading` (in `main.css`: tenda sull'immagine e titolo nascosto prima del paint; l'immagine resta dipinta, è l'LCP). Ogni pagina con un manifesto in apertura la usa, così le aperture non divergono.
 - **CSS scoped + `.js`**: scrivere `:global(.js .x)`, mai `:global(.js) .x`: Vue compila il secondo in `.js` e applica le regole a `<html>`.
 - **Direzione visiva**: "Manifesto d'affissione", contratto in `.impeccable/surfaces/app-pages-index-vue.md`. `PRODUCT.md` per il prodotto, `DESIGN.md` (+ `.impeccable/design.json`) per token e regole visive: leggerlo prima di toccare la UI.
 - **SEO**: ogni pagina chiama `useSeoMeta` con titolo e descrizione. URL assoluti da `useRuntimeConfig().public.siteUrl`. og:image = `/og/<locale>/<pagina>.jpg` precomposte: dopo aver aggiunto o modificato un'opera, `og/render.sh`.

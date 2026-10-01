@@ -45,16 +45,17 @@ onMounted(() => {
 const root = ref<HTMLElement>()
 useMotion(root, (mm, el) => {
   mm.add(MOTION_OK, () => {
-    pasteIn(el.querySelector('.bill-art')!, el.querySelector('.bill-name')!)
+    pasteIn(el.querySelector('.bill')!, el.querySelector('.bill-name')!)
 
     // Each stage is a wall: vertical scroll walks along it, then the next poster is pasted over it.
     const walk = el.querySelector<HTMLElement>('#percorso')!
     walk.classList.add('is-walk')
+    const offs: (() => void)[] = []
     for (const stage of walk.querySelectorAll<HTMLElement>('.stage')) {
       const wall = stage.querySelector<HTMLElement>('.wall')!
       const track = wall.querySelector<HTMLElement>('.sheets')!
       const dist = () => Math.max(0, track.scrollWidth - wall.clientWidth)
-      gsap.to(track, {
+      const tween = gsap.to(track, {
         x: () => -dist(),
         ease: 'none',
         scrollTrigger: {
@@ -66,19 +67,34 @@ useMotion(root, (mm, el) => {
           onRefreshInit: () => stage.style.setProperty('--walk', `${dist()}px`),
         },
       })
+      // Tab onto a sheet the walk has not reached: the wall is clipped, so move the page instead.
+      // Scroll and x run 1:1, so the sheet's place on the track is the scroll offset that centres it.
+      const onFocus = (e: FocusEvent) => {
+        const sheet = (e.target as HTMLElement).closest<HTMLElement>('.sheet')
+        if (!sheet) return
+        const r = sheet.getBoundingClientRect(), wr = wall.getBoundingClientRect()
+        if (r.left >= wr.left && r.right <= wr.right) return
+        const x = sheet.offsetLeft - track.offsetLeft - (wall.clientWidth - sheet.offsetWidth) / 2
+        window.scrollTo({ top: tween.scrollTrigger!.start + Math.min(dist(), Math.max(0, x)), behavior: 'instant' })
+      }
+      wall.addEventListener('focusin', onFocus)
+      offs.push(() => wall.removeEventListener('focusin', onFocus))
     }
-    return () => walk.classList.remove('is-walk')
+    return () => {
+      walk.classList.remove('is-walk')
+      offs.forEach(off => off())
+    }
   })
 })
 </script>
 
 <template>
   <div ref="root">
-    <section class="bill" aria-labelledby="name">
+    <section class="bill intro-poster" aria-labelledby="name">
       <img
         class="bill-art intro-art"
         :src="img(cover.image, 1200)"
-        :srcset="srcset(cover.image, [600, 900, 1200, 1800])"
+        :srcset="srcset(cover.image, [600, 750, 900, 1200, 1800])"
         sizes="(min-width: 900px) 62vw, 100vw"
         :width="cover.px[0]"
         :height="cover.px[1]"
@@ -126,7 +142,7 @@ useMotion(root, (mm, el) => {
                 <NuxtLink :to="localePath(`/opere/${w.slug}`)" class="sheet-link">
                   <img
                     :src="img(w.image, 800)"
-                    :srcset="srcset(w.image, [400, 800, 1200])"
+                    :srcset="srcset(w.image, [400, 600, 800, 1200])"
                     sizes="(min-width: 900px) 40vw, 80vw"
                     :width="w.px[0]"
                     :height="w.px[1]"
@@ -199,7 +215,7 @@ useMotion(root, (mm, el) => {
 }
 
 .bill-line { margin: 0.4rem 0 0; font-weight: 600; font-size: 1.05rem; }
-.bill-credit { margin: 0; font-size: 0.8rem; opacity: 0.85; }
+.bill-credit { margin: 0; font-size: 0.8rem; }
 
 /* Same breakpoint as the walls: a phone on its side gets the cover beside the band. */
 @media (min-width: 900px), (orientation: landscape) and (max-height: 520px) {
